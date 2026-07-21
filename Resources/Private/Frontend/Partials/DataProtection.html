@@ -21,6 +21,13 @@
               <f:if condition="{element.properties.text}">
                 <f:then>
                   {formvh:translateElementProperty(element: element, property: 'text') -> f:variable(name: 'translation')}
+                  <f:comment>
+                    f:format.raw is required here because the liaform:format.replace ViewHelper
+                    outputs HTML (typolink). The content sources are:
+                    - translation: from XLIFF (trusted, backend-managed)
+                    - replacement: typolink output (trusted TYPO3 framework output)
+                    No user input is rendered unescaped.
+                  </f:comment>
                   <f:format.raw>
                     <liaform:format.replace
                       substring="%pagelink_text%"
@@ -34,6 +41,9 @@
                 </f:then>
                 <f:else>
                   {f:link.typolink(parameter: element.renderingOptions.pageUid) -> f:variable(name: 'link')} {formvh:translateElementProperty(element: element, property: 'label') -> f:variable(name: 'translation')}
+                  <f:comment>
+                    f:format.raw required - see comment above. Sources are XLIFF and typolink.
+                  </f:comment>
                   <f:format.raw>
                     <liaform:format.replace substring="%s" content="{translation}" replacement="{link}" />
                   </f:format.raw>

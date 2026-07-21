@@ -6,14 +6,39 @@ services:
 
   LIA\LiaForm\:
     resource: '../Classes/*'
-    exclude: '../Classes/Domain/Model/*'
+    exclude:
+      - '../Classes/Domain/Model/*'
+      # Excluded from autowiring - these classes are instantiated by TYPO3 subsystems
+      # that don't use the DI container and require makeInstance() internally:
+      - '../Classes/Tasks/*'           # Scheduler tasks (serialized, no DI) - TYPO3 14 TCA-based
+      - '../Classes/Hooks/*'           # DataHandler hooks (no DI support)
 
-  LIA\LiaForm\EventListener\FlexFormEvent:
-    tags:
-      - name: event.listener
-        identifier: 'lia-form/flex-form-extension'
-        event: TYPO3\CMS\Core\Configuration\Event\AfterFlexFormDataStructureParsedEvent
+  # Event listeners are registered via #[AsEventListener] PHP attributes.
+  # See Classes/EventListener/ for all event listeners.
 
+  # Form Factory - must be public for Form Framework access
   LIA\LiaForm\Domain\Factory\ExtendedArrayFormFactory:
     public: true
     shared: false
+
+  # EmailFinisher overrides the core finisher. Override the core service id
+  # (not SYS['Objects'] XClass) so makeInstance(CoreEmailFinisher::class)
+  # resolves to a fully-built child via the container in TYPO3 v14.
+  TYPO3\CMS\Form\Domain\Finishers\EmailFinisher:
+    class: LIA\LiaForm\Finisher\EmailFinisher
+    public: true
+    shared: false
+
+  # TypoScriptReaderService - Singleton for request-scoped caching
+  LIA\LiaForm\Services\TypoScriptReaderService:
+    public: true
+
+  # FormPersistenceManager is public: false in EXT:form — expose it so makeInstance() can resolve it
+  # in the FlexFormHook (DataHandler hook; no constructor injection available)
+  TYPO3\CMS\Form\Mvc\Persistence\FormPersistenceManager:
+    public: true
+
+  # Preview renderers are resolved via GeneralUtility::makeInstance() in
+  # StandardPreviewRendererResolver — the service must be public
+  LIA\LiaForm\Preview\FormPreviewRenderer:
+    public: true

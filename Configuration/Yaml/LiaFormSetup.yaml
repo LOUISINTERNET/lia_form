@@ -56,6 +56,24 @@ TYPO3:
                       20:
                         value: "typo3temp/formuploads/"
                         label: "typo3temp/formuploads/"
+          # Register lia_form's own email templates as the default (priority 100).
+          # Core ships templateRootPaths at priority 10, so these win out of the box;
+          # a project's own override at priority 300 still takes precedence.
+          finishersDefinition:
+            EmailToReceiver:
+              options:
+                templateName: Default
+                templateRootPaths:
+                  100: "EXT:lia_form/Resources/Private/Frontend/Templates/Finishers/Email/"
+                partialRootPaths:
+                  100: "EXT:lia_form/Resources/Private/Frontend/Partials/Email/"
+            EmailToSender:
+              options:
+                templateName: UserHtml
+                templateRootPaths:
+                  100: "EXT:lia_form/Resources/Private/Frontend/Templates/Finishers/Email/"
+                partialRootPaths:
+                  100: "EXT:lia_form/Resources/Private/Frontend/Partials/Email/"
       formManager:
         selectablePrototypesConfiguration:
           100:

@@ -19,51 +19,36 @@ This extension provides also an :ref:`example configuration <exampleConfig>`.
 Override configuration
 ======================
 
-To override the default typoscript and yaml configuration create a `Setup.typoscript` in `EXT:my_extension/Configuration/TypoScript/Extensions/LiaForm/` folder.
-Now copy this snippet in this file and adjust the path to your `CustomFormSetup.yaml` if you already have on otherwise create it in the set path and adjust the
-extension name in this path.
+The YAML configuration of this extension is registered via the form
+framework's auto-discovery convention (`Configuration/Form/<SetName>/config.yaml`,
+available since TYPO3 v14.2). Two configuration sets are provided:
 
-.. code-block:: typoscript
-    :caption: EXT:my_extension/Configuration/TypoScript/Extensions/LiaForm
+* `lia/lia-form-setup` (priority 100) — base setup (`LiaFormSetup.yaml`)
+* `lia/lia-form-elements` (priority 199) — form elements and finishers
 
-    @import 'EXT:form/Configuration/TypoScript/'
+To override the default yaml configuration create your own configuration set
+in your extension. Use a priority between 101 and 198 so it loads after the
+base setup and before the element definitions.
 
-    plugin.tx_form {
-      settings {
-        yamlConfigurations {
-          100 = EXT:lia_form/Configuration/Yaml/LiaFormSetup.yaml
-          150 = EXT:my_extension/Configuration/Yaml/CustomFormSetup.yaml
-          199 = EXT:lia_form/Configuration/Yaml/FormElements/Form.yaml
-          207 = EXT:lia_form/Configuration/Yaml/FormElements/LiaDatePicker.yaml
-          208 = EXT:lia_form/Configuration/Yaml/FormElements/HtmlCode.yaml
-          209 = EXT:lia_form/Configuration/Yaml/FormElements/DataProtection.yaml
-          210 = EXT:lia_form/Configuration/Yaml/FormElements/LiaSiteTitle.yaml
-          271 = EXT:lia_form/Configuration/Yaml/Finisher/EmailToSender.yaml
-          281 = EXT:lia_form/Configuration/Yaml/FormElements/LiaParameterHidden.yaml
-          282 = EXT:lia_form/Configuration/Yaml/FormElements/PhoneAndAreaCode.yaml
-        }
-      }
-    }
+.. code-block:: yaml
+    :caption: EXT:my_extension/Configuration/Form/MyExtensionForms/config.yaml
 
-    module.tx_form {
-      settings {
-        yamlConfigurations {
-          100 = EXT:lia_form/Configuration/Yaml/LiaFormSetup.yaml
-          150 = EXT:my_extension/Configuration/Yaml/CustomFormSetup.yaml
-          199 = EXT:lia_form/Configuration/Yaml/FormElements/Form.yaml
-          207 = EXT:lia_form/Configuration/Yaml/FormElements/LiaDatePicker.yaml
-          208 = EXT:lia_form/Configuration/Yaml/FormElements/HtmlCode.yaml
-          209 = EXT:lia_form/Configuration/Yaml/FormElements/DataProtection.yaml
-          210 = EXT:lia_form/Configuration/Yaml/FormElements/LiaSiteTitle.yaml
-          271 = EXT:lia_form/Configuration/Yaml/Finisher/EmailToSender.yaml
-          281 = EXT:lia_form/Configuration/Yaml/FormElements/LiaParameterHidden.yaml
-          282 = EXT:lia_form/Configuration/Yaml/FormElements/PhoneAndAreaCode.yaml
-        }
-      }
-    }
+    name: my-vendor/my-extension-forms
+    priority: 150
 
+    imports:
+      - { resource: 'EXT:my_extension/Configuration/Yaml/CustomFormSetup.yaml' }
 
-Now you have to load this typoscript in you `setup.typoscript`.
+No TypoScript registration is required — the set is discovered automatically
+in frontend and backend.
+
+.. note::
+    The former TypoScript-based registration via
+    `plugin.tx_form.settings.yamlConfigurations` /
+    `module.tx_form.settings.yamlConfigurations` is deprecated since
+    TYPO3 v14.2 and will be removed in v15. Existing TypoScript registrations
+    still work during the deprecation period: legacy paths are loaded after
+    all auto-discovered sets.
 
 Yaml Configuration
 ==================

@@ -7,6 +7,7 @@
     <f:form.hidden
       property="{element.identifier}"
       id="{element.uniqueIdentifier}"
+      value="{element.properties.defaultValue}"
       additionalAttributes="{formvh:translateElementProperty(element: element, property: 'fluidAdditionalAttributes')}"
     />
   </formvh:renderRenderable>

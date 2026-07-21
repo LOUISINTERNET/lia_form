@@ -1,35 +1,8 @@
 @import 'EXT:form/Configuration/TypoScript/'
 
-plugin.tx_form {
-  settings {
-    yamlConfigurations {
-      100 = EXT:lia_form/Configuration/Yaml/LiaFormSetup.yaml
-      150 = EXT:my_extension/Configuration/Yaml/CustomFormSetup.yaml
-      199 = EXT:lia_form/Configuration/Yaml/FormElements/Form.yaml
-      207 = EXT:lia_form/Configuration/Yaml/FormElements/LiaDatePicker.yaml
-      208 = EXT:lia_form/Configuration/Yaml/FormElements/HtmlCode.yaml
-      209 = EXT:lia_form/Configuration/Yaml/FormElements/DataProtection.yaml
-      210 = EXT:lia_form/Configuration/Yaml/FormElements/LiaSiteTitle.yaml
-      271 = EXT:lia_form/Configuration/Yaml/Finisher/EmailToSender.yaml
-      281 = EXT:lia_form/Configuration/Yaml/FormElements/LiaParameterHidden.yaml
-      282 = EXT:lia_form/Configuration/Yaml/FormElements/PhoneAndAreaCode.yaml
-    }
-  }
-}
-
-module.tx_form {
-  settings {
-    yamlConfigurations {
-      100 = EXT:lia_form/Configuration/Yaml/LiaFormSetup.yaml
-      150 = EXT:my_extension/Configuration/Yaml/CustomFormSetup.yaml
-      199 = EXT:lia_form/Configuration/Yaml/FormElements/Form.yaml
-      207 = EXT:lia_form/Configuration/Yaml/FormElements/LiaDatePicker.yaml
-      208 = EXT:lia_form/Configuration/Yaml/FormElements/HtmlCode.yaml
-      209 = EXT:lia_form/Configuration/Yaml/FormElements/DataProtection.yaml
-      210 = EXT:lia_form/Configuration/Yaml/FormElements/LiaSiteTitle.yaml
-      271 = EXT:lia_form/Configuration/Yaml/Finisher/EmailToSender.yaml
-      281 = EXT:lia_form/Configuration/Yaml/FormElements/LiaParameterHidden.yaml
-      282 = EXT:lia_form/Configuration/Yaml/FormElements/PhoneAndAreaCode.yaml
-    }
-  }
-}
+# lia_form and project form YAML configurations are registered via
+# auto-discovery (Configuration/Form/<SetName>/config.yaml) since TYPO3
+# v14.2 — no TypoScript registration needed anymore. See
+# EXT:my_extension/Configuration/Form/MyExtensionForms/config.yaml for the
+# project-specific configuration set (priority 150, loads between
+# lia/lia-form-setup and lia/lia-form-elements).

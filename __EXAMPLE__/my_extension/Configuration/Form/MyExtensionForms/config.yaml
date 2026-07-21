@@ -1,0 +1,9 @@
+name: my-vendor/my-extension-forms
+
+# Load after lia/lia-form-setup (priority 100) and before
+# lia/lia-form-elements (priority 199) — the former TypoScript
+# yamlConfigurations interleave point was 150.
+priority: 150
+
+imports:
+  - { resource: 'EXT:my_extension/Configuration/Yaml/CustomFormSetup.yaml' }

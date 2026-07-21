@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2018-06-19T17:10:43Z" product-name="lia_form">
-		<header/>
-		<body>
-			<trans-unit id="tt_content.pi_flexform.formframework.cssClass">
-				<source><![CDATA[Additional CSS Class]]></source>
-			</trans-unit>
-		</body>
-	</file>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="messages" date="2018-06-19T17:10:43Z" product-name="lia_form">
+    <header/>
+    <body>
+      <trans-unit id="tt_content.pi_flexform.formframework.cssClass">
+        <source><![CDATA[Additional CSS Class]]></source>
+      </trans-unit>
+      <trans-unit id="scheduler.clearFolderTask.title">
+        <source><![CDATA[LiaForm: Clear Folder Task]]></source>
+      </trans-unit>
+      <trans-unit id="scheduler.clearFolderTask.description">
+        <source><![CDATA[Deletes files older than specified hours from the form upload folder.]]></source>
+      </trans-unit>
+      <trans-unit id="scheduler.clearFolderTask.hoursToLive">
+        <source><![CDATA[Delete files after X hours]]></source>
+      </trans-unit>
+      <trans-unit id="scheduler.clearFolderTask.hoursToLive.description">
+        <source><![CDATA[Files older than this many hours will be deleted.]]></source>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>

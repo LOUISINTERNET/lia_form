@@ -9,9 +9,23 @@
 
 namespace LIA\LiaForm\XClass;
 
-class FormDefinition extends \TYPO3\CMS\Form\Domain\Model\FormDefinition
+use TYPO3\CMS\Form\Domain\Model\FormDefinition as CoreFormDefinition;
+
+/**
+ * Extended FormDefinition with processing rule removal.
+ *
+ * Provides API to remove processing rules that the default implementation lacks.
+ *
+ * @author Onur Güngören <guengoeren@louis.info>, LOUIS INTERNET
+ */
+class FormDefinition extends CoreFormDefinition
 {
-    public function removeProcessingRule($identifier): void
+    /**
+     * Remove a processing rule by identifier.
+     *
+     * @param string $identifier The processing rule identifier to remove
+     */
+    public function removeProcessingRule(string $identifier): void
     {
         if (isset($this->processingRules[$identifier])) {
             unset($this->processingRules[$identifier]);

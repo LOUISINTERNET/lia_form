@@ -1,5 +1,10 @@
 @import 'EXT:form/Configuration/TypoScript/'
 
+# Form YAML configurations are registered via auto-discovery
+# (Configuration/Form/<SetName>/config.yaml) since TYPO3 v14.2 — see
+# EXT:lia_form/Configuration/Form/. The former TypoScript-based
+# yamlConfigurations registration is deprecated (#109412).
+
 plugin.tx_form {
   view {
     templateRootPaths {
@@ -13,35 +18,6 @@ plugin.tx_form {
     layoutRootPaths {
       0 = EXT:form/Resources/Private/Frontend/Layouts/
       1 = {$plugin.tx_form.view.layoutRootPath}
-    }
-  }
-  settings {
-    yamlConfigurations {
-      100 = EXT:lia_form/Configuration/Yaml/LiaFormSetup.yaml
-      199 = EXT:lia_form/Configuration/Yaml/FormElements/Form.yaml
-      207 = EXT:lia_form/Configuration/Yaml/FormElements/LiaDatePicker.yaml
-      208 = EXT:lia_form/Configuration/Yaml/FormElements/HtmlCode.yaml
-      209 = EXT:lia_form/Configuration/Yaml/FormElements/DataProtection.yaml
-      210 = EXT:lia_form/Configuration/Yaml/FormElements/LiaSiteTitle.yaml
-      271 = EXT:lia_form/Configuration/Yaml/Finisher/EmailToSender.yaml
-      281 = EXT:lia_form/Configuration/Yaml/FormElements/LiaParameterHidden.yaml
-      282 = EXT:lia_form/Configuration/Yaml/FormElements/PhoneAndAreaCode.yaml
-    }
-  }
-}
-
-module.tx_form {
-  settings {
-    yamlConfigurations {
-      100 = EXT:lia_form/Configuration/Yaml/LiaFormSetup.yaml
-      199 = EXT:lia_form/Configuration/Yaml/FormElements/Form.yaml
-      207 = EXT:lia_form/Configuration/Yaml/FormElements/LiaDatePicker.yaml
-      208 = EXT:lia_form/Configuration/Yaml/FormElements/HtmlCode.yaml
-      209 = EXT:lia_form/Configuration/Yaml/FormElements/DataProtection.yaml
-      210 = EXT:lia_form/Configuration/Yaml/FormElements/LiaSiteTitle.yaml
-      271 = EXT:lia_form/Configuration/Yaml/Finisher/EmailToSender.yaml
-      281 = EXT:lia_form/Configuration/Yaml/FormElements/LiaParameterHidden.yaml
-      282 = EXT:lia_form/Configuration/Yaml/FormElements/PhoneAndAreaCode.yaml
     }
   }
 }

@@ -1,6 +1,9 @@
-{namespace formvh=TYPO3\CMS\Form\ViewHelpers}
+<html
+  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+  xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+  data-namespace-typo3-fluid="true"
+>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
   <head>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,7 +16,7 @@
     </p>
     <table width="600" cellpadding="0" cellspacing="0" border="0">
       <formvh:renderAllFormValues renderable="{form.formDefinition}" as="formValue" >
-        <f:if condition="{formValue.element.type} != 'FileUpload' && {formValue.element.type} != 'ImageUpload' && {formValue.element.type} != 'Recaptcha' && {formValue.element.type} != 'DataProtection' && {formValue.element.type} != 'HtmlCode' && {formValue.element.type} != 'Fieldset'">
+        <f:if condition="{formValue.element.type} != 'FileUpload' &amp;&amp; {formValue.element.type} != 'ImageUpload' &amp;&amp; {formValue.element.type} != 'Recaptcha' &amp;&amp; {formValue.element.type} != 'DataProtection' &amp;&amp; {formValue.element.type} != 'HtmlCode' &amp;&amp; {formValue.element.type} != 'Fieldset'">
           <tr>
             <td width="600" valign="top" align="left">
               {formvh:translateElementProperty(element: formValue.element,property: 'label')}

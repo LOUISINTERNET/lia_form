@@ -1,137 +1,130 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2018-08-09T10:14:34Z">
-		<header>
-			<generator>LFEditor</generator>
-		</header>
-		<body>
-			<trans-unit id="element.city.properties.label" approved="yes">
-				<source><![CDATA[City]]></source>
-				<target><![CDATA[Stadt]]></target>
-			</trans-unit>
-			<trans-unit id="element.company.properties.label" approved="yes">
-				<source><![CDATA[Company]]></source>
-				<target><![CDATA[Unternehmen]]></target>
-			</trans-unit>
-			<trans-unit id="element.country.properties.label" approved="yes">
-				<source><![CDATA[Country]]></source>
-				<target><![CDATA[Land]]></target>
-			</trans-unit>
-			<trans-unit id="element.dataProtection.properties.label" approved="yes">
-				<source><![CDATA[Yes, I agree with the collection, use and processing of my personal data. The instructions for the %s I have read.]]></source>
-				<target><![CDATA[Ja, ich bin mit der Erhebung, Nutzung und Verarbeitung meiner personenbezogenen Daten einverstanden. Die Hinweise zum %s habe ich gelesen.]]></target>
-			</trans-unit>
-			<trans-unit id="element.email.properties.label" approved="yes">
-				<source><![CDATA[Email]]></source>
-				<target><![CDATA[E-Mail]]></target>
-			</trans-unit>
-			<trans-unit id="element.fieldsetContact.properties.label" approved="yes">
-				<source><![CDATA[Contact data]]></source>
-				<target><![CDATA[Kontaktdaten]]></target>
-			</trans-unit>
-			<trans-unit id="element.fieldsetInquiry.properties.label" approved="yes">
-				<source><![CDATA[Kind of request]]></source>
-				<target><![CDATA[Art der Anfrage]]></target>
-			</trans-unit>
-			<trans-unit id="element.fieldsetInterests.properties.label" approved="yes">
-				<source><![CDATA[Interests]]></source>
-				<target><![CDATA[Interessen]]></target>
-			</trans-unit>
-			<trans-unit id="element.fieldsetMessage.properties.label" approved="yes">
-				<source><![CDATA[Your message]]></source>
-				<target><![CDATA[Ihre Nachricht]]></target>
-			</trans-unit>
-			<trans-unit id="element.housenumber.properties.label" approved="yes">
-				<source><![CDATA[No.]]></source>
-				<target><![CDATA[Nr.]]></target>
-			</trans-unit>
-			<trans-unit id="element.message.properties.label" approved="yes">
-				<source><![CDATA[Message]]></source>
-				<target><![CDATA[Nachricht]]></target>
-			</trans-unit>
-			<trans-unit id="element.newsletterSignIn.properties.label" approved="yes">
-				<source><![CDATA[Yes, I want to subscribe to the newsletter]]></source>
-				<target><![CDATA[Ja, ich möchte den Newsletter abonnieren]]></target>
-			</trans-unit>
-			<trans-unit id="element.newsletterlanguage.properties.label" approved="yes">
-				<source><![CDATA[Newsletter language]]></source>
-				<target><![CDATA[Newsletter-Sprache]]></target>
-			</trans-unit>
-			<trans-unit id="element.phone.properties.label" approved="yes">
-				<source><![CDATA[Phone]]></source>
-				<target><![CDATA[Telefon]]></target>
-			</trans-unit>
-			<trans-unit id="element.phoneCountryCode.properties.label" approved="yes">
-				<source><![CDATA[Countrycode]]></source>
-				<target><![CDATA[Ländercode]]></target>
-			</trans-unit>
-			<trans-unit id="element.recipient.properties.label" approved="yes">
-				<source><![CDATA[Recipient]]></source>
-				<target><![CDATA[Empfänger]]></target>
-			</trans-unit>
-			<trans-unit id="element.street.properties.label" approved="yes">
-				<source><![CDATA[Street]]></source>
-				<target><![CDATA[Straße]]></target>
-			</trans-unit>
-			<trans-unit id="element.subject.properties.label" approved="yes">
-				<source><![CDATA[Subject]]></source>
-				<target><![CDATA[Betreff]]></target>
-			</trans-unit>
-			<trans-unit id="element.zipcode.properties.label" approved="yes">
-				<source><![CDATA[Zip code]]></source>
-				<target><![CDATA[PLZ]]></target>
-			</trans-unit>
-			<trans-unit id="element.CountrySelect.properties.prependOptionLabel" approved="yes">
-				<source><![CDATA[Please choose]]></source>
-				<target><![CDATA[Bitte auswählen]]></target>
-			</trans-unit>
-			<trans-unit id="element.SingleSelect.properties.prependOptionLabel" approved="yes">
-				<source><![CDATA[Please choose]]></source>
-				<target><![CDATA[Bitte auswählen]]></target>
-			</trans-unit>
-			<trans-unit id="element.dataProtection.properties.label" approved="yes">
-				<source><![CDATA[Yes, I agree with the %s.]]></source>
-				<target><![CDATA[Ja, ich akzepitiere die %s.]]></target>
-			</trans-unit>
-			<trans-unit id="element.email.properties.label" approved="yes">
-				<source><![CDATA[Email]]></source>
-				<target><![CDATA[E-Mail]]></target>
-			</trans-unit>
-			<trans-unit id="element.fieldsetContact.properties.label" approved="yes">
-				<source><![CDATA[Contact data]]></source>
-				<target><![CDATA[Kontaktdaten]]></target>
-			</trans-unit>
-			<trans-unit id="element.firstname.properties.label" approved="yes">
-				<source><![CDATA[Firstname]]></source>
-				<target><![CDATA[Vorname]]></target>
-			</trans-unit>
-			<trans-unit id="element.renderingOptions.submitButtonLabel" approved="yes">
-				<source><![CDATA[Submit]]></source>
-				<target><![CDATA[Senden]]></target>
-			</trans-unit>
-			<trans-unit id="element.lastname.properties.label" approved="yes">
-				<source><![CDATA[Name]]></source>
-				<target><![CDATA[Nachname]]></target>
-			</trans-unit>
-			<trans-unit id="element.salutation.properties.label" approved="yes">
-				<source><![CDATA[Salutation]]></source>
-				<target><![CDATA[Titel]]></target>
-			</trans-unit>
-			<trans-unit id="element.salutation.properties.options.female" approved="yes">
-				<source><![CDATA[Mrs.]]></source>
-				<target><![CDATA[Frau]]></target>
-			</trans-unit>
-			<trans-unit id="element.salutation.properties.options.male" approved="yes">
-				<source><![CDATA[Mr.]]></source>
-				<target><![CDATA[Herr]]></target>
-			</trans-unit>
-			<trans-unit id="element.website.properties.label" approved="yes">
-					<source><![CDATA[Website]]></source>
-			</trans-unit>
-			<trans-unit id="element.message.properties.label" approved="yes">
-				<source><![CDATA[Message]]></source>
-				<target><![CDATA[Nachricht]]></target>
-			</trans-unit>
-		</body>
-	</file>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2018-08-09T10:14:34Z">
+    <header>
+      <generator>LFEditor</generator>
+    </header>
+    <body>
+      <trans-unit id="element.city.properties.label" approved="yes">
+        <source><![CDATA[City]]></source>
+        <target><![CDATA[Stadt]]></target>
+      </trans-unit>
+      <trans-unit id="element.company.properties.label" approved="yes">
+        <source><![CDATA[Company]]></source>
+        <target><![CDATA[Unternehmen]]></target>
+      </trans-unit>
+      <trans-unit id="element.country.properties.label" approved="yes">
+        <source><![CDATA[Country]]></source>
+        <target><![CDATA[Land]]></target>
+      </trans-unit>
+      <trans-unit id="element.dataProtection.properties.label" approved="yes">
+        <source><![CDATA[Yes, I agree with the collection, use and processing of my personal data. The instructions for the %1$s I have read.]]></source>
+        <target><![CDATA[Ja, ich bin mit der Erhebung, Nutzung und Verarbeitung meiner personenbezogenen Daten einverstanden. Die Hinweise zum %1$s habe ich gelesen.]]></target>
+      </trans-unit>
+      <trans-unit id="element.dataProtection.properties.labelShort" approved="yes">
+        <source><![CDATA[Yes, I agree with the %1$s.]]></source>
+        <target><![CDATA[Ja, ich akzeptiere die %1$s.]]></target>
+      </trans-unit>
+      <trans-unit id="element.email.properties.label" approved="yes">
+        <source><![CDATA[Email]]></source>
+        <target><![CDATA[E-Mail]]></target>
+      </trans-unit>
+      <trans-unit id="element.fieldsetContact.properties.label" approved="yes">
+        <source><![CDATA[Contact data]]></source>
+        <target><![CDATA[Kontaktdaten]]></target>
+      </trans-unit>
+      <trans-unit id="element.fieldsetInquiry.properties.label" approved="yes">
+        <source><![CDATA[Kind of request]]></source>
+        <target><![CDATA[Art der Anfrage]]></target>
+      </trans-unit>
+      <trans-unit id="element.fieldsetInterests.properties.label" approved="yes">
+        <source><![CDATA[Interests]]></source>
+        <target><![CDATA[Interessen]]></target>
+      </trans-unit>
+      <trans-unit id="element.fieldsetMessage.properties.label" approved="yes">
+        <source><![CDATA[Your message]]></source>
+        <target><![CDATA[Ihre Nachricht]]></target>
+      </trans-unit>
+      <trans-unit id="element.firstname.properties.label" approved="yes">
+        <source><![CDATA[Firstname]]></source>
+        <target><![CDATA[Vorname]]></target>
+      </trans-unit>
+      <trans-unit id="element.housenumber.properties.label" approved="yes">
+        <source><![CDATA[No.]]></source>
+        <target><![CDATA[Nr.]]></target>
+      </trans-unit>
+      <trans-unit id="element.lastname.properties.label" approved="yes">
+        <source><![CDATA[Name]]></source>
+        <target><![CDATA[Nachname]]></target>
+      </trans-unit>
+      <trans-unit id="element.message.properties.label" approved="yes">
+        <source><![CDATA[Message]]></source>
+        <target><![CDATA[Nachricht]]></target>
+      </trans-unit>
+      <trans-unit id="element.newsletterSignIn.properties.label" approved="yes">
+        <source><![CDATA[Yes, I want to subscribe to the newsletter]]></source>
+        <target><![CDATA[Ja, ich möchte den Newsletter abonnieren]]></target>
+      </trans-unit>
+      <trans-unit id="element.newsletterlanguage.properties.label" approved="yes">
+        <source><![CDATA[Newsletter language]]></source>
+        <target><![CDATA[Newsletter-Sprache]]></target>
+      </trans-unit>
+      <trans-unit id="element.phone.properties.label" approved="yes">
+        <source><![CDATA[Phone]]></source>
+        <target><![CDATA[Telefon]]></target>
+      </trans-unit>
+      <trans-unit id="element.phoneCountryCode.properties.label" approved="yes">
+        <source><![CDATA[Countrycode]]></source>
+        <target><![CDATA[Ländercode]]></target>
+      </trans-unit>
+      <trans-unit id="element.recipient.properties.label" approved="yes">
+        <source><![CDATA[Recipient]]></source>
+        <target><![CDATA[Empfänger]]></target>
+      </trans-unit>
+      <trans-unit id="element.renderingOptions.submitButtonLabel" approved="yes">
+        <source><![CDATA[Submit]]></source>
+        <target><![CDATA[Senden]]></target>
+      </trans-unit>
+      <trans-unit id="element.salutation.properties.label" approved="yes">
+        <source><![CDATA[Salutation]]></source>
+        <target><![CDATA[Titel]]></target>
+      </trans-unit>
+      <trans-unit id="element.salutation.properties.options.female" approved="yes">
+        <source><![CDATA[Mrs.]]></source>
+        <target><![CDATA[Frau]]></target>
+      </trans-unit>
+      <trans-unit id="element.salutation.properties.options.male" approved="yes">
+        <source><![CDATA[Mr.]]></source>
+        <target><![CDATA[Herr]]></target>
+      </trans-unit>
+      <trans-unit id="element.SingleSelect.properties.prependOptionLabel" approved="yes">
+        <source><![CDATA[Please choose]]></source>
+        <target><![CDATA[Bitte auswählen]]></target>
+      </trans-unit>
+      <trans-unit id="element.CountrySelect.properties.prependOptionLabel" approved="yes">
+        <source><![CDATA[Please choose]]></source>
+        <target><![CDATA[Bitte auswählen]]></target>
+      </trans-unit>
+      <trans-unit id="element.street.properties.label" approved="yes">
+        <source><![CDATA[Street]]></source>
+        <target><![CDATA[Straße]]></target>
+      </trans-unit>
+      <trans-unit id="element.subject.properties.label" approved="yes">
+        <source><![CDATA[Subject]]></source>
+        <target><![CDATA[Betreff]]></target>
+      </trans-unit>
+      <trans-unit id="element.subject.properties.options.catalog" approved="yes">
+        <source><![CDATA[Catalogue request]]></source>
+        <target><![CDATA[Katalogabfrage]]></target>
+      </trans-unit>
+      <trans-unit id="element.website.properties.label" approved="yes">
+        <source><![CDATA[Website]]></source>
+        <target><![CDATA[Webseite]]></target>
+      </trans-unit>
+      <trans-unit id="element.zipcode.properties.label" approved="yes">
+        <source><![CDATA[Zip code]]></source>
+        <target><![CDATA[PLZ]]></target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>

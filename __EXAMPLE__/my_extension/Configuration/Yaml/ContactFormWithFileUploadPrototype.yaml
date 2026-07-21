@@ -9,20 +9,41 @@ finishers:
       subject: "Admin Mail: Kontaktanfrage"
       recipients:
         my-recipient@my-domain.com: ""
+      carbonCopyRecipients: {}
+      blindCarbonCopyRecipients: {}
       senderAddress: no-reply@my-domain.com
       senderName: ""
       replyToRecipients:
         "{email}": ""
       addHtmlPart: true
       attachUploads: true
-      useFluidEmail: true
-      templatePathAndFilename: "EXT:my_extension/Resources/Private/Extensions/LiaForm/FormThree/Templates/Finishers/Email/Html.html"
-      templateName: Default
+      templateName: UserHtml
       templateRootPaths:
         300: "EXT:my_extension/Resources/Private/Extensions/LiaForm/FormThree/Templates/Finishers/Email/"
       partialRootPaths:
         300: "EXT:my_extension/Resources/Private/Extensions/LiaForm/FormThree/Partials/Email/"
     identifier: EmailToReceiver
+  -
+    options:
+      subject: Danke
+      recipients:
+        '{email}': '{lastname}'
+      senderAddress: no-reply@my-domain.com
+      senderName: ''
+      addHtmlPart: true
+      attachUploads: false
+      title: ''
+      translation:
+        language: default
+      errorMessage: ''
+      templateRootPaths:
+        300: 'EXT:lia_package/Resources/Private/Extensions/LiaForm/FormTwo/Templates/Finishers/Email/'
+      partialRootPaths:
+        300: 'EXT:lia_package/Resources/Private/Extensions/LiaForm/FormTwo/Partials/Email/'
+    identifier: EmailToSender
+    defaultValue: ''
+  -
+    identifier: DeleteUploads
   - options:
       pageUid: "1"
       additionalParameters: ""

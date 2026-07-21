@@ -9,75 +9,102 @@
 
 namespace LIA\LiaForm\Services;
 
+use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /**
  * This service provide some function to get data from the typoscript of this Extension.
  */
-class TypoScriptReaderService
+class TypoScriptReaderService implements SingletonInterface
 {
     /**
-     * Typoscript plugin settings.
+     * Cached TypoScript plugin settings.
+     *
+     * @var array<string, mixed>
      */
-    protected static array $formPluginSettings;
+    private array $formPluginSettings = [];
 
     /**
-     * Return the typoscript plugin settings.
+     * Flag indicating if settings have been initialized.
+     *
+     * @var bool
      */
-    public static function getFormSettings(): array
+    private bool $initialized = false;
+
+    /**
+     * Constructor.
+     *
+     * @param TypoScriptService $typoScriptService Service for TypoScript conversion
+     * @param ConfigurationManager $configurationManager Configuration manager for TypoScript access
+     */
+    public function __construct(
+        private readonly TypoScriptService $typoScriptService,
+        private readonly ConfigurationManager $configurationManager
+    ) {}
+
+    /**
+     * Return the TypoScript plugin settings.
+     *
+     * @return array<string, mixed> The form plugin settings
+     */
+    public function getFormSettings(): array
     {
-        if (empty(self::$formPluginSettings)) {
-            self::initializeService();
+        if (!$this->initialized) {
+            $this->initializeSettings();
         }
 
-        return self::$formPluginSettings;
+        return $this->formPluginSettings;
     }
 
     /**
-     * Check if the ajax is active for the form plugin.
+     * Check if AJAX is active for the form plugin.
+     *
+     * @return bool True if AJAX is active
      */
-    public static function isAjaxActive(): bool
+    public function isAjaxActive(): bool
     {
-        if (empty(self::$formPluginSettings)) {
-            self::initializeService();
+        if (!$this->initialized) {
+            $this->initializeSettings();
         }
 
-        if (empty(self::$formPluginSettings['ajax'])) {
+        if (empty($this->formPluginSettings['ajax'])) {
             return false;
         }
 
-        return (bool)self::$formPluginSettings['ajax']['active'];
+        return (bool)$this->formPluginSettings['ajax']['active'];
     }
 
     /**
-     * Get the pageNum fallback value from the typoscript or return null if it does not exist.
+     * Get the pageNum fallback value from TypoScript.
+     *
+     * @return int|null The fallback page type or null if not configured
      */
-    public static function getContentPageTypeFallback(): ?int
+    public function getContentPageTypeFallback(): ?int
     {
-        if (empty(self::$formPluginSettings)) {
-            self::initializeService();
+        if (!$this->initialized) {
+            $this->initializeSettings();
         }
 
-        if (empty(self::$formPluginSettings['ajax']['getContentPageTypeFallback'])) {
+        if (empty($this->formPluginSettings['ajax']['getContentPageTypeFallback'])) {
             return null;
         }
 
-        return (int)self::$formPluginSettings['ajax']['getContentPageTypeFallback'];
+        return (int)$this->formPluginSettings['ajax']['getContentPageTypeFallback'];
     }
 
     /**
-     * Initialize this service class.
+     * Initialize the TypoScript settings.
+     *
+     * Loads TypoScript configuration and caches it for the request.
      */
-    private static function initializeService(): void
+    private function initializeSettings(): void
     {
-        $coreTyposcriptService = GeneralUtility::makeInstance(TypoScriptService::class);
-        $coreConfigurationManager = GeneralUtility::makeInstance(ConfigurationManager::class);
-
-        self::$formPluginSettings = $coreTyposcriptService->convertTypoScriptArrayToPlainArray(
-            $coreConfigurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT)
+        $this->formPluginSettings = $this->typoScriptService->convertTypoScriptArrayToPlainArray(
+            $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT)
         )['plugin']['tx_form']['settings'] ?? [];
+
+        $this->initialized = true;
     }
 }

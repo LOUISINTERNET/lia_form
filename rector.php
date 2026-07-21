@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Rector configuration for TYPO3 v13 extension upgrade
+ * Rector configuration for TYPO3 v14 extension upgrade
  *
  * Usage:
- *   ./vendor/bin/rector process --dry-run  # Preview changes
- *   ./vendor/bin/rector process            # Apply changes
+ *   ./.Build/bin/rector process --dry-run  # Preview changes
+ *   ./.Build/bin/rector process            # Apply changes
  *
  * Requires: composer require --dev ssch/typo3-rector:^3.11
  */
@@ -34,11 +34,11 @@ return static function (RectorConfig $rectorConfig): void {
 
     // Define what rule sets will be applied
     $rectorConfig->sets([
-        // TYPO3 v13 minimum is PHP 8.2
+        // PHP level upgrades (TYPO3 v14 minimum is PHP 8.2)
         LevelSetList::UP_TO_PHP_82,
 
-        // Extension targets TYPO3 v13 only (composer: typo3/cms-core ^13.4)
-        Typo3LevelSetList::UP_TO_TYPO3_13,
+        // Extension targets TYPO3 v14 only (composer: typo3/cms-core ^14.3)
+        Typo3LevelSetList::UP_TO_TYPO3_14,
 
         // TYPO3 code quality and general improvements
         Typo3SetList::CODE_QUALITY,
@@ -49,6 +49,7 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__ . '/ext_emconf.php',
         __DIR__ . '/.Build',
         __DIR__ . '/vendor',
+        __DIR__ . '/__EXAMPLE__',
 
         // Skip constructor promotion - keep explicit property declarations for clarity
         ClassPropertyAssignToConstructorPromotionRector::class,
@@ -61,13 +62,15 @@ return static function (RectorConfig $rectorConfig): void {
         NameImportingPostRector::class => [__DIR__ . '/ext_localconf.php'],
 
         // These classes are instantiated via GeneralUtility::makeInstance() from
-        // non-DI contexts (DataHandler hook, scheduler additionalFields, finisher
-        // created in FormDefinition::createFinisher()) and are private services —
-        // constructor injection would cause ArgumentCountError at runtime
+        // non-DI contexts (DataHandler hook, finisher created in
+        // FormDefinition::createFinisher()) — constructor injection would cause
+        // ArgumentCountError at runtime
         GeneralUtilityMakeInstanceToConstructorPropertyRector::class => [
             __DIR__ . '/Classes/Hooks/FlexFormHook.php',
-            __DIR__ . '/Classes/Tasks/ClearFolderAdditionalFieldProvider.php',
             __DIR__ . '/Classes/Finisher/EmailFinisher.php',
+            // Adding a constructor here would redeclare the parent's promoted
+            // readonly properties (PHP fatal) — parent ctor is autowired instead
+            __DIR__ . '/Classes/Preview/FormPreviewRenderer.php',
         ],
     ]);
 };

@@ -1,0 +1,5 @@
+name: lia/lia-form-setup
+priority: 100
+
+imports:
+  - { resource: 'EXT:lia_form/Configuration/Yaml/LiaFormSetup.yaml' }

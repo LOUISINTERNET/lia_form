@@ -7,26 +7,10 @@ prototypeName: standard
 finishers:
   -
     options:
-      subject: Kontaktanfrage
-      senderAddress: no-reply@my-domain.com
-      senderName: ''
-      format: html
-      attachUploads: true
-      replyToRecipients:
-        - ''
-      carbonCopyRecipients:
-        - ''
-      blindCarbonCopyRecipients:
-        - ''
-      recipients:
-        '{email}': '{firstname} {lastname}'
-    identifier: EmailToSender
-  -
-    options:
       subject: 'Admin Mail: Kontaktanfrage'
       senderAddress: no-reply@my-domain.com
       senderName: ''
-      format: html
+      addHtmlPart: true
       attachUploads: true
       translation:
         language: ''
@@ -39,6 +23,22 @@ finishers:
       recipients:
         adminsv@my-domain.com: ''
     identifier: EmailToReceiver
+  -
+    options:
+      subject: Kontaktanfrage
+      senderAddress: no-reply@my-domain.com
+      senderName: ''
+      addHtmlPart: true
+      attachUploads: false
+      replyToRecipients:
+        - ''
+      carbonCopyRecipients:
+        - ''
+      blindCarbonCopyRecipients:
+        - ''
+      recipients:
+        '{email}': '{firstname} {lastname}'
+    identifier: EmailToSender
   -
     options:
       pageUid: '1'

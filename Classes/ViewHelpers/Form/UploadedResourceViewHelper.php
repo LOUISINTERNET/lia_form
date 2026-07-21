@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
 * This file is part of the "lia_form" Extension for TYPO3 CMS.
 *
@@ -18,10 +16,11 @@ use TYPO3\CMS\Form\Mvc\Property\TypeConverter\PseudoFileReference;
 use TYPO3\CMS\Form\Security\HashScope;
 
 /**
- * This ViewHelper makes the specified Image object available for its
- * childNodes.
- * In case the form is redisplayed because of validation errors, a previously
- * uploaded image will be correctly used.
+ * ViewHelper for uploaded file resources.
+ *
+ * Makes the specified Image object available for its childNodes.
+ * In case the form is redisplayed because of validation errors,
+ * a previously uploaded image will be correctly used.
  *
  * Scope: frontend
  *
@@ -43,23 +42,28 @@ use TYPO3\CMS\Form\Security\HashScope;
 class UploadedResourceViewHelper extends AbstractFormFieldViewHelper
 {
     /**
+     * HTML tag name for the file input element.
+     *
      * @var string
      */
     protected $tagName = 'input';
 
-    protected HashService $hashService;
-    protected PropertyMapper $propertyMapper;
-
-    public function injectHashService(HashService $hashService)
-    {
-        $this->hashService = $hashService;
+    /**
+     * Constructor.
+     *
+     * @param HashService $hashService Hash service for securing resource pointers
+     * @param PropertyMapper $propertyMapper Property mapper for converting uploaded resources
+     */
+    public function __construct(
+        private readonly HashService $hashService,
+        private readonly PropertyMapper $propertyMapper
+    ) {
+        parent::__construct();
     }
 
-    public function injectPropertyMapper(PropertyMapper $propertyMapper)
-    {
-        $this->propertyMapper = $propertyMapper;
-    }
-
+    /**
+     * Initialize arguments.
+     */
     public function initializeArguments(): void
     {
         parent::initializeArguments();
@@ -68,6 +72,11 @@ class UploadedResourceViewHelper extends AbstractFormFieldViewHelper
         $this->registerArgument('errorClass', 'string', 'CSS class to set if there are errors for this ViewHelper', false, 'f3-form-error');
     }
 
+    /**
+     * Render the view helper.
+     *
+     * @return string The rendered HTML
+     */
     public function render(): string
     {
         $output = '';
@@ -82,43 +91,7 @@ class UploadedResourceViewHelper extends AbstractFormFieldViewHelper
         }
 
         if ($resource !== null) {
-            if (is_array($resource) && isset($resource[0])) {
-                foreach ($resource as $key => $item) {
-                    if ($item instanceof PseudoFileReference) {
-                        $resourcePointerIdAttribute = '';
-                        if (isset($this->additionalArguments['id'])) {
-                            $resourcePointerIdAttribute = ' id="' . htmlspecialchars((string)$this->additionalArguments['id']) . '-file-reference ' . $key . '"';
-                        }
-
-                        $resourcePointerValue = $item->getUid();
-                        if ($resourcePointerValue === null) {
-                            // Newly created file reference which is not persisted yet.
-                            // Use the file UID instead, but prefix it with "file:" to communicate this to the type converter
-                            $resourcePointerValue = 'file:' . $item->getOriginalResource()->getOriginalFile()->getUid();
-                        }
-
-                        $output .= '<input type="hidden" data-value="' . $item->getOriginalResource()->getOriginalFile()->getName() . '" name="' . htmlspecialchars($this->getName()) . '[submittedFile][resourcePointer][]" value="' . htmlspecialchars($this->hashService->appendHmac((string)$resourcePointerValue, HashScope::ResourcePointer->prefix())) . '"' . $resourcePointerIdAttribute . ' />';
-                    }
-                }
-            } elseif ($resource instanceof PseudoFileReference) {
-                $resourcePointerIdAttribute = '';
-                if (isset($this->additionalArguments['id'])) {
-                    $resourcePointerIdAttribute = ' id="' . htmlspecialchars((string)$this->additionalArguments['id']) . '-file-reference"';
-                }
-
-                $resourcePointerValue = $resource->getUid();
-                if ($resourcePointerValue === null) {
-                    // Newly created file reference which is not persisted yet.
-                    // Use the file UID instead, but prefix it with "file:" to communicate this to the type converter
-                    $resourcePointerValue = 'file:' . $resource->getOriginalResource()->getOriginalFile()->getUid();
-                }
-
-                $output .= '<input type="hidden" name="' . htmlspecialchars($this->getName()) . '[submittedFile][resourcePointer]" value="' . htmlspecialchars($this->hashService->appendHmac((string)$resourcePointerValue, HashScope::ResourcePointer->prefix())) . '"' . $resourcePointerIdAttribute . ' />';
-            }
-
-            $this->templateVariableContainer->add($as, $resource);
-            $output .= $this->renderChildren();
-            $this->templateVariableContainer->remove($as);
+            $output .= $this->renderResourcePointers($resource, $as);
         }
 
         foreach (['name', 'type', 'tmp_name', 'error', 'size'] as $fieldName) {
@@ -139,8 +112,73 @@ class UploadedResourceViewHelper extends AbstractFormFieldViewHelper
     }
 
     /**
+     * Render resource pointers for previously uploaded files.
+     *
+     * Note: Union type in signature is required to handle both single and multiple file uploads.
+     * PHPStan and static analysis should use the @param annotation for detailed type info.
+     *
+     * @param array<int, PseudoFileReference>|PseudoFileReference $resource The uploaded resource(s)
+     * @param string $as Variable name for template
+     * @return string The rendered hidden inputs
+     */
+    private function renderResourcePointers(array|PseudoFileReference $resource, string $as): string
+    {
+        $output = '';
+
+        if (is_array($resource) && isset($resource[0])) {
+            foreach ($resource as $key => $item) {
+                $output .= $this->renderSingleResourcePointer($item, $key);
+            }
+        } elseif ($resource instanceof PseudoFileReference) {
+            $output .= $this->renderSingleResourcePointer($resource, null);
+        }
+
+        $this->templateVariableContainer?->add($as, $resource);
+        $output .= $this->renderChildren();
+        $this->templateVariableContainer?->remove($as);
+
+        return $output;
+    }
+
+    /**
+     * Render a single resource pointer hidden input.
+     *
+     * @param PseudoFileReference $item The file reference
+     * @param int|null $key Array key for multiple files
+     * @return string The rendered hidden input
+     */
+    private function renderSingleResourcePointer(PseudoFileReference $item, ?int $key): string
+    {
+        $resourcePointerIdAttribute = '';
+        if (isset($this->additionalArguments['id'])) {
+            $suffix = $key !== null ? '-file-reference ' . $key : '-file-reference';
+            $resourcePointerIdAttribute = ' id="' . htmlspecialchars((string)$this->additionalArguments['id']) . $suffix . '"';
+        }
+
+        $resourcePointerValue = $item->getUid();
+        if ($resourcePointerValue === null) {
+            // Newly created file reference which is not persisted yet.
+            // Use the file UID instead, but prefix it with "file:" to communicate this to the type converter.
+            $resourcePointerValue = 'file:' . $item->getOriginalResource()->getOriginalFile()->getUid();
+        }
+
+        $hashedValue = $this->hashService->appendHmac((string)$resourcePointerValue, HashScope::ResourcePointer->prefix());
+        $nameAttribute = $key !== null
+            ? htmlspecialchars($this->getName()) . '[submittedFile][resourcePointer][]'
+            : htmlspecialchars($this->getName()) . '[submittedFile][resourcePointer]';
+
+        $dataValue = $item->getOriginalResource()->getOriginalFile()->getName();
+
+        return '<input type="hidden" data-value="' . htmlspecialchars((string)$dataValue, ENT_QUOTES, 'UTF-8') . '" name="' . $nameAttribute . '" value="' . htmlspecialchars($hashedValue) . '"' . $resourcePointerIdAttribute . ' />';
+    }
+
+    /**
      * Return a previously uploaded resource.
-     * Return NULL if errors occurred during property mapping for this property.
+     *
+     * Returns NULL if errors occurred during property mapping for this property.
+     * Union type is required to handle single files, multiple files, or no upload.
+     *
+     * @return array<int, PseudoFileReference>|PseudoFileReference|null
      */
     protected function getUploadedResource(): array|PseudoFileReference|null
     {

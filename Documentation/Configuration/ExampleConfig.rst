@@ -71,8 +71,10 @@ In this file are the constants to set the template root paths of the form extens
 Setup.typoscript
 ----------------
 
-This setup load the default form configuration and extends the `settings.yamlConfigurations` of the form plugin and
-module.
+This setup loads the default form framework TypoScript. The form YAML
+configurations themselves are registered via auto-discovery — see
+`EXT:lia_form/__EXAMPLE__/my_extension/Configuration/Form/MyExtensionForms/config.yaml`
+for the project-specific configuration set (priority 150).
 
 
 Resources

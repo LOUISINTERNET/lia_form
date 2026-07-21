@@ -14,7 +14,7 @@ TYPO3:
                           identifier: 'attachments'
                           templateName: 'Inspector-TextEditor'
                           label: 'Attachments'
-                          fieldExplanationText: 'Comma separated list of file UIDs: 63,71. Allowed file types: pdf, docx, xlsx, jpg'
+                          description: 'Comma separated list of file UIDs: 63,71. Allowed file types: pdf, docx, xlsx, jpg'
                           propertyPath: 'options.attachments'
           finishersDefinition:
             EmailToSender:
@@ -48,5 +48,5 @@ TYPO3:
                   identifier: 'attachments'
                   templateName: 'Inspector-TextEditor'
                   label: 'Attachments'
-                  fieldExplanationText: 'Comma separated list of file UIDs: 63,71. Allowed file types: pdf,docx,xlsx,jpg'
+                  description: 'Comma separated list of file UIDs: 63,71. Allowed file types: pdf,docx,xlsx,jpg'
                   propertyPath: 'options.attachments'

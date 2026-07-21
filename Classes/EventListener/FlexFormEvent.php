@@ -9,21 +9,29 @@
 
 namespace LIA\LiaForm\EventListener;
 
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Configuration\Event\AfterFlexFormDataStructureParsedEvent;
 
 /**
  * This Event modify the form FlexForm by adding a field for a custom css class.
  */
-class FlexFormEvent
+#[AsEventListener(
+    identifier: 'lia-form/flex-form-parsing',
+    event: AfterFlexFormDataStructureParsedEvent::class
+)]
+final class FlexFormEvent
 {
     public function __invoke(AfterFlexFormDataStructureParsedEvent $event): void
     {
         $dataStructure = $event->getDataStructure();
         $identifier = $event->getIdentifier();
 
-        if ($identifier['tableName'] === 'tt_content' && $identifier['fieldName'] === 'pi_flexform' && $identifier['dataStructureKey'] === '*,form_formframework') {
-            $sheetElements = &$dataStructure['sheets']['sDEF']['ROOT']['el'];
-            $sheetElements['settings.cssClass'] = [
+        if (
+            $identifier['tableName'] === 'tt_content'
+            && $identifier['fieldName'] === 'pi_flexform'
+            && $identifier['dataStructureKey'] === 'form_formframework'
+        ) {
+            $dataStructure['sheets']['sDEF']['ROOT']['el']['settings.cssClass'] = [
                 'label' => 'LLL:EXT:lia_form/Resources/Private/Language/locallang_db.xlf:tt_content.pi_flexform.formframework.cssClass',
                 'config' => [
                     'type' => 'input',

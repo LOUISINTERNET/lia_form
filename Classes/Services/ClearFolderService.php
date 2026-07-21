@@ -1,84 +1,116 @@
 <?php
 
 /*
-* This file is part of the "lia_form" Extension for TYPO3 CMS.
-*
-* For the full copyright and license information, please read the
-* LICENSE.txt file that was distributed with this source code.
-*/
+ * This file is part of the "LIA Form" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
 
 namespace LIA\LiaForm\Services;
 
 use TYPO3\CMS\Core\Core\Environment;
 
 /**
- * This is the service class with the logic to delete the files in given folder or
- * the default one.
+ * Service for cleaning deprecated files from a folder.
+ *
+ * Provides logic to delete files older than a specified deadline.
+ *
+ * @author Johannes Delesky <delesky@louis.info>
  */
 class ClearFolderService
 {
     /**
-     * @var string $clearFolderPath
+     * Default upload folder path relative to public directory.
      */
-    private $clearFolderPath;
+    private const DEFAULT_UPLOAD_FOLDER = '/typo3temp/formuploads';
 
     /**
-     * @var int $dayInSeconds
+     * Number of seconds in one hour.
      */
-    private $dayInSeconds = 3600;
+    private const SECONDS_PER_HOUR = 3600;
 
     /**
-     * @var int $fileDeadline
-     */
-    private $fileDeadline;
-
-    /**
-     * A list of files which has to be kept.
+     * Path to the folder to clear.
      *
-     * @var array $keepFiles
+     * @var string
      */
-    private $keepFiles = [];
+    private readonly string $clearFolderPath;
 
     /**
-     * Class constructor
+     * File deadline in seconds.
      *
-     * @param int $hours amount of hours the file can be saved
-     * @param string $folderName folder to clean
-     * @param array $keepFiles a list of file which has to be kept.
+     * @var int
      */
-    public function __construct(int $hours, string $folderName, array $keepFiles = ['.htaccess', '.gitignore', '.gitkeep'])
-    {
-        $this->fileDeadline = $hours * $this->dayInSeconds;
+    private readonly int $fileDeadline;
+
+    /**
+     * List of files to keep.
+     *
+     * @var array<int, string>
+     */
+    private readonly array $keepFiles;
+
+    /**
+     * Create service instance.
+     *
+     * @param int $hours Amount of hours the file can be saved
+     * @param array<int, string> $keepFiles List of files to keep
+     */
+    public function __construct(
+        int $hours,
+        array $keepFiles = ['.htaccess', '.gitignore', '.gitkeep']
+    ) {
+        $this->fileDeadline = $hours * self::SECONDS_PER_HOUR;
         $this->keepFiles = $keepFiles === [] ? ['.htaccess', '.gitignore', '.gitkeep'] : $keepFiles;
-        $this->clearFolderPath  = Environment::getPublicPath() . '/typo3temp/' . $folderName;
+        $this->clearFolderPath = Environment::getPublicPath() . self::DEFAULT_UPLOAD_FOLDER;
     }
 
     /**
-     * Delete a file or recursively delete a directory
+     * Delete files recursively from directory.
      *
-     * @param string|null $dir Path to file or directory
+     * Security: Only allows deletion within the configured clearFolderPath
+     * to prevent path traversal attacks.
      *
-     * @return bool
+     * @param string|null $dir Path to file or directory (internal use only)
+     * @return bool True on success
      */
-    public function recursiveDelete($dir = null)
+    public function recursiveDelete(?string $dir = null): bool
     {
-        $source = $dir ?? $this->clearFolderPath;
+        $source = $this->clearFolderPath;
+
+        if ($dir !== null && $dir !== '') {
+            // Security: Validate path is within allowed folder
+            $realDir = realpath($dir);
+            $realBase = realpath($this->clearFolderPath);
+            if ($realDir === false || $realBase === false || !str_starts_with($realDir, $realBase)) {
+                return false;
+            }
+            $source = $dir;
+        }
 
         if (!is_dir($source)) {
             mkdir($source, 0775, true);
         }
 
-        foreach (scandir($source) as $file) {
-            if (in_array($file, ['.', '..'])) {
+        $files = scandir($source);
+        if ($files === false) {
+            return false;
+        }
+
+        foreach ($files as $file) {
+            if ($file === '.' || $file === '..') {
                 continue;
             }
 
-            if (is_dir(sprintf('%s/%s', $source, $file))) {
-                $this->recursiveDelete(sprintf('%s/%s', $source, $file));
-            } elseif ($this->canFileBeDeleted(sprintf('%s/%s', $source, $file))) {
-                if (!in_array($file, $this->keepFiles)) {
-                    unlink(sprintf('%s/%s', $source, $file));
-                }
+            $filePath = sprintf('%s/%s', $source, $file);
+
+            if (is_dir($filePath)) {
+                $this->recursiveDelete($filePath);
+            } elseif ($this->canFileBeDeleted($filePath) && !in_array($file, $this->keepFiles, true)) {
+                unlink($filePath);
             }
         }
 
@@ -86,20 +118,20 @@ class ClearFolderService
     }
 
     /**
-     * This function check if the deadline of the file is reached.
+     * Check if file deadline is reached.
      *
-     * @param string $file
-     *
-     * @return bool
+     * @param string $file Path to the file
+     * @return bool True if file can be deleted
      */
-    private function canFileBeDeleted($file)
+    private function canFileBeDeleted(string $file): bool
     {
-        $dt = new \DateTime();
+        $currentTime = new \DateTime();
+        $fileModificationTime = filemtime($file);
 
-        if (filemtime($file) === false) {
+        if ($fileModificationTime === false) {
             return false;
         }
 
-        return ($dt->getTimestamp() - filemtime($file)) > $this->fileDeadline;
+        return ($currentTime->getTimestamp() - $fileModificationTime) > $this->fileDeadline;
     }
 }

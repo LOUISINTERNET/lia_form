@@ -24,13 +24,20 @@
 	"license": "GPL-2.0-or-later",
 	"require": {
 		"php": "^8.2",
-		"typo3/cms-core": "^13.4",
-		"typo3/cms-form": "^13.4"
+		"typo3/cms-core": "^14.3",
+		"typo3/cms-form": "^14.3"
 	},
 	"require-dev": {
-		"typo3/testing-framework": "^8.0",
+		"typo3/testing-framework": "^9.0",
 		"typo3/coding-standards": "^0.8.0",
-		"t3docs/fluid-documentation-generator": "^4.4"
+		"t3docs/fluid-documentation-generator": "^4.4",
+		"ssch/typo3-rector": "^3.11",
+		"a9f/typo3-fractor": "^0.5",
+		"phpstan/phpstan": "^2.2",
+		"phpstan/phpstan-deprecation-rules": "^2.0",
+		"phpstan/phpstan-phpunit": "^2.0",
+		"saschaegerer/phpstan-typo3": "^3.0",
+		"ssch/typo3-debug-dump-pass": "^0.0.3"
 	},
 	"autoload": {
 		"psr-4": {
@@ -46,6 +53,7 @@
 		"vendor-dir": ".Build/vendor",
 		"bin-dir": ".Build/bin",
 		"allow-plugins": {
+			"a9f/fractor-extension-installer": true,
 			"typo3/class-alias-loader": true,
 			"typo3/cms-composer-installers": true
 		}

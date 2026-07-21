@@ -1,0 +1,17 @@
+name: lia/lia-form-elements
+priority: 199
+
+# Import order matches the former TypoScript yamlConfigurations priorities
+# (199, 207, 208, 209, 210, 271, 281, 282). Project-specific configuration
+# sets should use a priority between 101 and 198 to load after the base
+# setup (lia/lia-form-setup, priority 100) and before these element
+# definitions — the former TypoScript interleave point was 150.
+imports:
+  - { resource: 'EXT:lia_form/Configuration/Yaml/FormElements/Form.yaml' }
+  - { resource: 'EXT:lia_form/Configuration/Yaml/FormElements/LiaDatePicker.yaml' }
+  - { resource: 'EXT:lia_form/Configuration/Yaml/FormElements/HtmlCode.yaml' }
+  - { resource: 'EXT:lia_form/Configuration/Yaml/FormElements/DataProtection.yaml' }
+  - { resource: 'EXT:lia_form/Configuration/Yaml/FormElements/LiaSiteTitle.yaml' }
+  - { resource: 'EXT:lia_form/Configuration/Yaml/Finisher/EmailToSender.yaml' }
+  - { resource: 'EXT:lia_form/Configuration/Yaml/FormElements/LiaParameterHidden.yaml' }
+  - { resource: 'EXT:lia_form/Configuration/Yaml/FormElements/PhoneAndAreaCode.yaml' }

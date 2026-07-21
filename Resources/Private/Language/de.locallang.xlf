@@ -1,40 +1,44 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2018-06-19T13:35:13Z">
-		<header>
-			<generator>LFEditor</generator>
-		</header>
-		<body>
-			<trans-unit id="mail.introduction" approved="yes" xml:space="preserve">
-				<source><![CDATA[Thank you very much for your inquiry. We will work on the request and get back to you as soon as possible.
-								]]></source>
-				<target><![CDATA[vielen Dank für die Anfrage. Diese ist bei uns eingegangen. Wir werden uns schnellstmöglich um das Anliegen kümmern und uns zurückmelden.
-				]]></target>
-			</trans-unit>
-			<trans-unit id="mail.regards" approved="yes">
-				<source><![CDATA[Best Regards]]></source>
-				<target><![CDATA[Mit freundlichen Grüßen]]></target>
-			</trans-unit>
-			<trans-unit id="mail.company" approved="yes">
-				<source><![CDATA[Your team from COMPANY]]></source>
-				<target><![CDATA[Ihr Team von UNTERNEHMEN]]></target>
-			</trans-unit>
-			<trans-unit id="mail.request_time" approved="yes">
-				<source><![CDATA[Contact request was sent on %s]]></source>
-				<target><![CDATA[Anfrage wurde gesendet um %s]]></target>
-			</trans-unit>
-			<trans-unit id="mail.salutation" approved="yes">
-				<source><![CDATA[Dear %1$s %2$s,]]></source>
-				<target><![CDATA[Hallo %1$s %2$s,]]></target>
-			</trans-unit>
-			<trans-unit id="mail.female" approved="yes">
-				<source><![CDATA[Mrs.]]></source>
-				<target><![CDATA[Frau]]></target>
-			</trans-unit>
-			<trans-unit id="mail.male" approved="yes">
-				<source><![CDATA[Mr.]]></source>
-				<target><![CDATA[Herr]]></target>
-			</trans-unit>
-		</body>
-	</file>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2018-06-19T13:35:13Z">
+    <header>
+      <generator>LFEditor</generator>
+    </header>
+    <body>
+      <trans-unit id="mail.introduction" approved="yes" xml:space="preserve">
+        <source><![CDATA[Thank you very much for your inquiry. We will work on the request and get back to you as soon as possible.
+                ]]></source>
+        <target><![CDATA[vielen Dank für die Anfrage. Diese ist bei uns eingegangen. Wir werden uns schnellstmöglich um das Anliegen kümmern und uns zurückmelden.
+        ]]></target>
+      </trans-unit>
+      <trans-unit id="mail.regards" approved="yes">
+        <source><![CDATA[Best Regards]]></source>
+        <target><![CDATA[Mit freundlichen Grüßen]]></target>
+      </trans-unit>
+      <trans-unit id="mail.company" approved="yes">
+        <source><![CDATA[Your team from COMPANY]]></source>
+        <target><![CDATA[Ihr Team von COMPANY]]></target>
+      </trans-unit>
+      <trans-unit id="mail.request_time" approved="yes">
+        <source><![CDATA[Contact request was sent on %1$s]]></source>
+        <target><![CDATA[Anfrage wurde gesendet um %1$s]]></target>
+      </trans-unit>
+      <trans-unit id="mail.salutation" approved="yes">
+        <source><![CDATA[Dear %1$s %2$s,]]></source>
+        <target><![CDATA[Hallo %1$s %2$s,]]></target>
+      </trans-unit>
+      <trans-unit id="mail.female" approved="yes">
+        <source><![CDATA[Mrs.]]></source>
+        <target><![CDATA[Frau]]></target>
+      </trans-unit>
+      <trans-unit id="mail.male" approved="yes">
+        <source><![CDATA[Mr.]]></source>
+        <target><![CDATA[Herr]]></target>
+      </trans-unit>
+      <trans-unit id="summary.no_value" approved="yes">
+        <source><![CDATA[-]]></source>
+        <target><![CDATA[-]]></target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>

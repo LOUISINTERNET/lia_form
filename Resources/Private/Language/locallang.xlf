@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2018-06-19T17:10:43Z" product-name="lia_form">
-		<header/>
-		<body>
-			<trans-unit id="mail.introduction">
-				<source>Thank you very much for your inquiry. We will work on the request and get back to you as soon as possible.</source>
-			</trans-unit>
-			<trans-unit id="mail.company" approved="yes">
-				<source>Your team from COMPANY</source>
-			</trans-unit>
-			<trans-unit id="mail.regards">
-				<source>Best Regards</source>
-			</trans-unit>
-			<trans-unit id="mail.request_time">
-				<source>Contact request was sent on %s</source>
-			</trans-unit>
-			<trans-unit id="mail.salutation">
-				<source>Dear %1$s %2$s,</source>
-			</trans-unit>
-			<trans-unit id="mail.female">
-				<source><![CDATA[Mrs.]]></source>
-			</trans-unit>
-			<trans-unit id="mail.male">
-				<source><![CDATA[Mr.]]></source>
-			</trans-unit>
-		</body>
-	</file>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="messages" date="2018-06-19T17:10:43Z" product-name="lia_form">
+    <header/>
+    <body>
+      <trans-unit id="mail.introduction">
+        <source><![CDATA[Thank you very much for your inquiry. We will work on the request and get back to you as soon as possible.]]></source>
+      </trans-unit>
+      <trans-unit id="mail.company" approved="yes">
+        <source><![CDATA[Your team from COMPANY]]></source>
+      </trans-unit>
+      <trans-unit id="mail.regards">
+        <source><![CDATA[Best Regards]]></source>
+      </trans-unit>
+      <trans-unit id="mail.request_time">
+        <source><![CDATA[Contact request was sent on %1$s]]></source>
+      </trans-unit>
+      <trans-unit id="mail.salutation">
+        <source><![CDATA[Dear %1$s %2$s,]]></source>
+      </trans-unit>
+      <trans-unit id="mail.female">
+        <source><![CDATA[Mrs.]]></source>
+      </trans-unit>
+      <trans-unit id="mail.male">
+        <source><![CDATA[Mr.]]></source>
+      </trans-unit>
+      <trans-unit id="summary.no_value">
+        <source><![CDATA[-]]></source>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>

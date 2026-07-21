@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the "LIA Form" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 /*
@@ -20,32 +27,42 @@ use Psr\Http\Message\ServerRequestInterface;
 final class BeforeFormDefinitionCreatesEvent
 {
     /**
-     * Event constructor.
+     * Create event instance.
+     *
+     * @param array<string, mixed> $formDefinitionConfigArray The form configuration array
+     * @param ServerRequestInterface $request The current server request
+     * @param int $renderedForms Count of forms rendered in this request
      */
     public function __construct(
-        private array $formDefintionConfigArray,
+        private array $formDefinitionConfigArray,
         private readonly ServerRequestInterface $request,
         private readonly int $renderedForms
     ) {}
 
     /**
-     * Returns the formDefintionConfigArray
+     * Get the form definition configuration array.
+     *
+     * @return array<string, mixed> The form configuration
      */
     public function getFormDefinitionConfigArray(): array
     {
-        return $this->formDefintionConfigArray;
+        return $this->formDefinitionConfigArray;
     }
 
     /**
-     * Set the formDefinitionConfigArray
+     * Set the form definition configuration array.
+     *
+     * @param array<string, mixed> $newFormDefinitionConfigArray The new form configuration
      */
     public function setFormDefinitionConfigArray(array $newFormDefinitionConfigArray): void
     {
-        $this->formDefintionConfigArray = $newFormDefinitionConfigArray;
+        $this->formDefinitionConfigArray = $newFormDefinitionConfigArray;
     }
 
     /**
-     * Return the ServerRequestInterface
+     * Get the server request interface.
+     *
+     * @return ServerRequestInterface The current request
      */
     public function getServerRequestInterface(): ServerRequestInterface
     {
@@ -53,7 +70,9 @@ final class BeforeFormDefinitionCreatesEvent
     }
 
     /**
-     * Returns the count of the rendered forms.
+     * Get the count of rendered forms.
+     *
+     * @return int Number of forms rendered in this request
      */
     public function getRenderedForms(): int
     {

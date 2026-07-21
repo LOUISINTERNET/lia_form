@@ -2,7 +2,7 @@ renderingOptions:
   submitButtonLabel: Senden
 type: Form
 identifier: defaultform
-label: Standardformular
+label: Formular Typ 1
 prototypeName: standard
 finishers:
   - options:
@@ -15,14 +15,32 @@ finishers:
         "{email}": ""
       addHtmlPart: true
       attachUploads: true
-      useFluidEmail: true
-      templatePathAndFilename: "EXT:my_extension/Resources/Private/Extensions/LiaForm/FormOne/Templates/Finishers/Email/Html.html"
       templateName: Default
       templateRootPaths:
         300: "EXT:my_extension/Resources/Private/Extensions/LiaForm/FormOne/Templates/Finishers/Email/"
       partialRootPaths:
         300: "EXT:my_extension/Resources/Private/Extensions/LiaForm/FormOne/Partials/Email/"
     identifier: EmailToReceiver
+  -
+    options:
+      subject: Danke
+      recipients:
+        '{email}': '{lastname}'
+      senderAddress: no-reply@my-domain.com
+      senderName: ''
+      addHtmlPart: true
+      attachUploads: false
+      title: ''
+      translation:
+        language: default
+      errorMessage: ''
+      templateName: UserHtml
+      templateRootPaths:
+        300: 'EXT:lia_package/Resources/Private/Extensions/LiaForm/FormTwo/Templates/Finishers/Email/'
+      partialRootPaths:
+        300: 'EXT:lia_package/Resources/Private/Extensions/LiaForm/FormTwo/Partials/Email/'
+    identifier: EmailToSender
+    defaultValue: ''
   - options:
       pageUid: "1"
       additionalParameters: ""

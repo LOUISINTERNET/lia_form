@@ -9,9 +9,28 @@
 
 namespace LIA\LiaForm\XClass;
 
-class FormRuntime extends \TYPO3\CMS\Form\Domain\Runtime\FormRuntime
+use TYPO3\CMS\Form\Domain\Runtime\FormRuntime as CoreFormRuntime;
+
+/**
+ * Extended FormRuntime with additional value setter.
+ *
+ * Provides public access to set form values programmatically.
+ *
+ * @author LOUIS INTERNET <devs@louis.info>
+ */
+class FormRuntime extends CoreFormRuntime
 {
-    public function setValue($identifier, $value): void
+    /**
+     * Set a form value by identifier.
+     *
+     * Note: The $value parameter uses mixed type because form values can be
+     * any scalar type (string, int, bool), arrays, or null. This matches
+     * the TYPO3 Core FormState::setFormValue() signature.
+     *
+     * @param string $identifier The form element identifier
+     * @param string|int|bool|array<mixed>|null $value The value to set
+     */
+    public function setValue(string $identifier, mixed $value): void
     {
         $this->formState->setFormValue($identifier, $value);
     }

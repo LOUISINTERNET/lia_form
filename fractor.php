@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Fractor configuration for TYPO3 v13 extension upgrade
+ * Fractor configuration for TYPO3 v14 extension upgrade
  *
  * Fractor handles non-PHP file migrations:
  * - FlexForms (XML)
@@ -11,8 +11,8 @@
  * - .htaccess files
  *
  * Usage:
- *   ./vendor/bin/fractor process --dry-run  # Preview changes
- *   ./vendor/bin/fractor process            # Apply changes
+ *   ./.Build/bin/fractor process --dry-run  # Preview changes
+ *   ./.Build/bin/fractor process            # Apply changes
  *
  * NOTE: Fractor does NOT support --config flag.
  *       It auto-discovers fractor.php in the current working directory.
@@ -33,6 +33,7 @@ return FractorConfiguration::configure()
     ->withPaths([
         __DIR__ . '/Configuration',
         __DIR__ . '/Resources',
+        __DIR__ . '/__EXAMPLE__',
         __DIR__ . '/ext_typoscript_setup.typoscript',
     ])
     ->withSkip([
@@ -40,8 +41,8 @@ return FractorConfiguration::configure()
         __DIR__ . '/vendor',
     ])
     ->withSets([
-        // Extension targets TYPO3 v13 only (composer: typo3/cms-core ^13.4)
-        Typo3LevelSetList::UP_TO_TYPO3_13,
+        // TYPO3 v14 upgrade rules
+        Typo3LevelSetList::UP_TO_TYPO3_14,
     ])
     ->withOptions([
         // Preserve indentation inside TypoScript conditions

@@ -29,6 +29,10 @@ This extension provide events which can be subscribed to modify the default func
 
         Replace the area code list of the PhoneAndAreaCode element.
 
+    ..  card:: :ref:`RenderFinisherPreviewEvent <RenderFinisherPreviewEvent>`
+
+        Provide a custom page module preview for your own finisher types.
+
     ..  card:: :ref:`AllInOneEventListenerClass <AllInOneEventListenerClass>`
 
         How to register all events in just one class.
@@ -41,4 +45,5 @@ This extension provide events which can be subscribed to modify the default func
     ./ApplyCustomSettingsToViewEvent
     ./Finisher/SetDefaultValueEvent
     ./BeforePhoneAreaCodeInitializeEvent
+    ./RenderFinisherPreviewEvent
     ./AllInOneEventListenerClass
