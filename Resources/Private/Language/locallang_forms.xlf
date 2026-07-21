@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2018-08-01T16:37:16Z">
+		<header>
+			<generator>LFEditor</generator>
+		</header>
+		<body>
+			<trans-unit id="element.city.properties.label">
+				<source><![CDATA[City]]></source>
+			</trans-unit>
+			<trans-unit id="element.company.properties.label">
+				<source><![CDATA[Company]]></source>
+			</trans-unit>
+			<trans-unit id="element.country.properties.label">
+				<source><![CDATA[Country]]></source>
+			</trans-unit>
+			<trans-unit id="element.dataProtection.properties.label">
+				<source><![CDATA[Yes, I agree with the collection, use and processing of my personal data. The instructions for the %s I have read.]]></source>
+			</trans-unit>
+			<trans-unit id="element.email.properties.label">
+				<source><![CDATA[Email]]></source>
+			</trans-unit>
+			<trans-unit id="element.fieldsetContact.properties.label">
+				<source><![CDATA[Contact data]]></source>
+			</trans-unit>
+			<trans-unit id="element.fieldsetInquiry.properties.label">
+				<source><![CDATA[Kind of request]]></source>
+			</trans-unit>
+			<trans-unit id="element.fieldsetInterests.properties.label">
+				<source><![CDATA[Interests]]></source>
+			</trans-unit>
+			<trans-unit id="element.fieldsetMessage.properties.label">
+				<source><![CDATA[Your message]]></source>
+			</trans-unit>
+			<trans-unit id="element.housenumber.properties.label">
+				<source><![CDATA[No.]]></source>
+			</trans-unit>
+			<trans-unit id="element.message.properties.label">
+				<source><![CDATA[Message]]></source>
+			</trans-unit>
+			<trans-unit id="element.newsletterSignIn.properties.label">
+				<source><![CDATA[Yes, I want to subscribe to the newsletter]]></source>
+			</trans-unit>
+			<trans-unit id="element.newsletterlanguage.properties.label">
+				<source><![CDATA[Newsletter language]]></source>
+			</trans-unit>
+			<trans-unit id="element.phone.properties.label">
+				<source><![CDATA[Phone]]></source>
+			</trans-unit>
+			<trans-unit id="element.phoneCountryCode.properties.label">
+				<source><![CDATA[Countrycode]]></source>
+			</trans-unit>
+			<trans-unit id="element.recipient.properties.label">
+				<source><![CDATA[Recipient]]></source>
+			</trans-unit>
+			<trans-unit id="element.street.properties.label">
+				<source><![CDATA[Street]]></source>
+			</trans-unit>
+			<trans-unit id="element.subject.properties.label">
+				<source><![CDATA[Subject]]></source>
+			</trans-unit>
+			<trans-unit id="element.subject.properties.options.catalog">
+				<source><![CDATA[Catalogue request]]></source>
+			</trans-unit>
+			<trans-unit id="element.zipcode.properties.label">
+				<source><![CDATA[Zip code]]></source>
+			</trans-unit>
+			<trans-unit id="element.SingleSelect.properties.prependOptionLabel">
+				<source><![CDATA[Please choose]]></source>
+			</trans-unit>
+			<trans-unit id="element.CountrySelect.properties.prependOptionLabel">
+				<source><![CDATA[Please choose]]></source>
+			</trans-unit>
+			<trans-unit id="element.dataProtection.properties.label">
+				<source><![CDATA[Yes, I agree with the %s.]]></source>
+			</trans-unit>
+			<trans-unit id="element.email.properties.label">
+				<source><![CDATA[Email]]></source>
+			</trans-unit>
+			<trans-unit id="element.fieldsetContact.properties.label">
+				<source><![CDATA[Contact data]]></source>
+			</trans-unit>
+			<trans-unit id="element.firstname.properties.label">
+				<source><![CDATA[Firstname]]></source>
+			</trans-unit>
+			<trans-unit id="element.renderingOptions.submitButtonLabel">
+				<source><![CDATA[Submit]]></source>
+			</trans-unit>
+			<trans-unit id="element.lastname.properties.label">
+				<source><![CDATA[Name]]></source>
+			</trans-unit>
+			<trans-unit id="element.salutation.properties.label">
+				<source><![CDATA[Salutation]]></source>
+			</trans-unit>
+			<trans-unit id="element.salutation.properties.options.female">
+				<source><![CDATA[Mrs.]]></source>
+			</trans-unit>
+			<trans-unit id="element.salutation.properties.options.male">
+				<source><![CDATA[Mr.]]></source>
+			</trans-unit>
+			<trans-unit id="element.website.properties.label">
+					<source><![CDATA[Website]]></source>
+			</trans-unit>
+			<trans-unit id="element.message.properties.label" approved="yes">
+				<source><![CDATA[Message]]></source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

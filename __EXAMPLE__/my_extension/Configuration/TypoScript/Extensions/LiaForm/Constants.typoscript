@@ -1,0 +1,7 @@
+plugin.tx_form{
+  view {
+    templateRootPath = EXT:my_extension/Resources/Private/Extension/LiaForm/Frontend/Templates/
+    partialRootPath = EXT:my_extension/Resources/Private/Extension/LiaForm/Frontend/Partials/
+    layoutRootPath = EXT:my_extension/Resources/Private/Extension/LiaForm/Frontend/Layouts/
+  }
+}

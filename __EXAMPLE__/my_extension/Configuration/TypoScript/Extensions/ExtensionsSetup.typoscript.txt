@@ -1,0 +1,1 @@
+@import 'EXT:my_extension/Configuration/TypoScript/Extensions/LiaForm/Setup.typoscript'

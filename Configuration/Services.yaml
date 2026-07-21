@@ -1,0 +1,19 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  LIA\LiaForm\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+
+  LIA\LiaForm\EventListener\FlexFormEvent:
+    tags:
+      - name: event.listener
+        identifier: 'lia-form/flex-form-extension'
+        event: TYPO3\CMS\Core\Configuration\Event\AfterFlexFormDataStructureParsedEvent
+
+  LIA\LiaForm\Domain\Factory\ExtendedArrayFormFactory:
+    public: true
+    shared: false

@@ -1,0 +1,27 @@
+<html
+  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+  xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+  data-namespace-typo3-fluid="true"
+>
+  <formvh:renderRenderable renderable="{element}">
+    <f:render partial="Field/Field" arguments="{element: element}" contentAs="elementContent">
+      <f:if condition="{element.properties.options.0}">
+        <f:form.select name="{element.identifier}-areaCode" class="{element.properties.areaCodeClass}">
+          <f:for each="{element.properties.options}" as="areaCode">
+            <f:variable name="countryCode" value="{areaCode.code -> f:format.case(mode: 'lower')}" />
+            <f:form.select.option additionalAttributes="{data-country-code: countryCode}" value="{areaCode.dial_code}">
+              {areaCode.dial_code}
+            </f:form.select.option>
+          </f:for>
+        </f:form.select>
+      </f:if>
+      <f:form.textfield
+        property="{element.identifier}"
+        id="{element.uniqueIdentifier}"
+        class="{element.properties.elementClassAttribute}"
+        errorClass="{element.properties.elementErrorClassAttribute}"
+        additionalAttributes="{formvh:translateElementProperty(element: element, property: 'fluidAdditionalAttributes')}"
+      />
+    </f:render>
+  </formvh:renderRenderable>
+</html>

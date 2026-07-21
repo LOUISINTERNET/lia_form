@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- See  https://docs.typo3.org/permalink/h2document:guides-xml for documentation on this file-->
+<guides
+    xmlns="https://www.phpdoc.org/guides"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://www.phpdoc.org/guides ../.Build/vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
+    input-format="rst"
+    >
+    <project
+        title="LIA Form"
+        version="local"
+        copyright="since 2025 by Louis INTERNET"
+    />
+    <extension
+        class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
+        project-home="https://extensions.typo3.org/extension/lia_form"
+        project-contact="mailto:devs@louis.info"
+        project-repository="https://github.com/LOUISINTERNET/lia_form"
+        project-issues="https://github.com/LOUISINTERNET/lia_form/issues"
+        report-issues="https://github.com/LOUISINTERNET/lia_form/issues/new"
+        edit-on-github-branch="main"
+        edit-on-github="LOUISINTERNET/lia_form"
+        typo3-core-preferred="13.4"
+        interlink-shortcode="lia/lia_form"
+    />
+</guides>

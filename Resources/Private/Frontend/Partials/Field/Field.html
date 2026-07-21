@@ -1,0 +1,36 @@
+<html
+  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+  xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+  data-namespace-typo3-fluid="true"
+>
+  <f:form.validationResults for="{element.rootForm.identifier}.{element.identifier}">
+    <div class="c-form__group c-form__item--{element.type -> f:format.case(mode:'lower')} {element.identifier} {f:if(condition: '{validationResults.errors.0}', then: ' has-error')} {f:if(condition: '{element.type} == \'ImageUpload\'', then: ' c-form__upload')}">
+      <f:if condition="{doNotShowLabel} != 1">
+        <label class="c-form__label" for="{element.uniqueIdentifier}">
+          {formvh:translateElementProperty(element: element, property: 'label')}
+          <f:if condition="{element.properties.fluidAdditionalAttributes.required}">
+            <f:render partial="Field/Required" />
+          </f:if>
+        </label>
+      </f:if>
+      <div class="c-form__element {element.identifier} {f:if(condition: '{element.type} == \'LiaSeveralSender\'', then: ' singleselect-')}">
+        <f:format.raw>
+          {elementContent}
+          <f:if condition="{validationResults.flattenedErrors}">
+            <span class="error help-block" role="alert">
+              <f:for each="{validationResults.errors}" as="error">
+                {formvh:translateElementError(element: element, error: error)}
+                <br />
+              </f:for>
+            </span>
+          </f:if>
+        </f:format.raw>
+        <f:if condition="{element.properties.elementDescription}">
+          <span class="help-block">
+            {formvh:translateElementProperty(element: element, property: 'elementDescription')}
+          </span>
+        </f:if>
+      </div>
+    </div>
+  </f:form.validationResults>
+</html>

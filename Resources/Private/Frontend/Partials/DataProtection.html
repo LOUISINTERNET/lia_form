@@ -1,0 +1,51 @@
+<html
+  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+  xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+  xmlns:liaform="http://typo3.org/ns/LIA/LiaForm/ViewHelpers"
+  data-namespace-typo3-fluid="true"
+>
+  <formvh:renderRenderable renderable="{element}">
+    <f:render partial="Field/Field" arguments="{element: element, doNotShowLabel: 1}" contentAs="elementContent" >
+      <div class="c-form__data">
+        <label class="{element.properties.elementClassAttribute} c-form__data-label" for="{element.uniqueIdentifier}">
+          <f:form.checkbox
+            property="{element.identifier}"
+            id="{element.uniqueIdentifier}"
+            class="{element.properties.elementClassAttribute}"
+            value="{element.properties.value}"
+            errorClass="{element.properties.elementErrorClassAttribute}"
+            additionalAttributes="{formvh:translateElementProperty(element: element, property: 'fluidAdditionalAttributes')}"
+          />
+          <span>
+            <div>
+              <f:if condition="{element.properties.text}">
+                <f:then>
+                  {formvh:translateElementProperty(element: element, property: 'text') -> f:variable(name: 'translation')}
+                  <f:format.raw>
+                    <liaform:format.replace
+                      substring="%pagelink_text%"
+                      content="{translation}"
+                      replacement="<f:link.typolink parameter='{element.renderingOptions.pageUid}' target='_blank'>{formvh:translateElementProperty(element: element, property: 'linktext')}</f:link.typolink>"
+                    />
+                  </f:format.raw>
+                  <f:if condition="{element.required}">
+                    <f:render partial="Field/Required"/>
+                  </f:if>
+                </f:then>
+                <f:else>
+                  {f:link.typolink(parameter: element.renderingOptions.pageUid) -> f:variable(name: 'link')} {formvh:translateElementProperty(element: element, property: 'label') -> f:variable(name: 'translation')}
+                  <f:format.raw>
+                    <liaform:format.replace substring="%s" content="{translation}" replacement="{link}" />
+                  </f:format.raw>
+                  <f:if condition="{element.required}">
+                    <f:render partial="Field/Required"/>
+                  </f:if>
+                </f:else>
+              </f:if>
+            </div>
+          </span>
+        </label>
+      </div>
+    </f:render>
+  </formvh:renderRenderable>
+</html>

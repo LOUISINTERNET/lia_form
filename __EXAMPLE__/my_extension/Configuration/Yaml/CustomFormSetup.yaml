@@ -1,0 +1,80 @@
+TYPO3:
+  CMS:
+    Form:
+      persistenceManager:
+        allowSaveToExtensionPaths: true
+        allowedFileMounts:
+          100: 1:/forms/
+        allowedExtensionPaths:
+          10: EXT:my_extension/Resource/Private/Extensions/LiaForm/
+      prototypes:
+        standard:
+          formEditor:
+            formEditorFluidConfiguration:
+              partialRootPaths:
+                20: "EXT:lia_form/Resources/Private/Backend/Partials/FormEditor/"
+                30: "EXT:my_extension/Resources/Private/Extensions/LiaForm/Backend/Partials/FormEditor/"
+          formElementsDefinition:
+            Form:
+              renderingOptions:
+                templateRootPaths:
+                  100: "EXT:lia_form/Resources/Private/Frontend/Templates/"
+                  200: "EXT:my_extension/Resources/Private/Extensions/LiaForm/Frontend/Templates/"
+                partialRootPaths:
+                  100: "EXT:lia_form/Resources/Private/Frontend/Partials/"
+                  200: "EXT:my_extension/Resources/Private/Extensions/LiaForm/Frontend/Partials/"
+                translation:
+                  translationFiles:
+                    # translation files for the frontend
+                    10: "EXT:form/Resources/Private/Language/locallang.xlf"
+                    20: "EXT:lia_form/Resources/Private/Language/locallang_forms.xlf"
+                    30: "EXT:my_extension/Resources/Private/Extensions/LiaForm/Language/locallang_forms.xlf"
+            GridRow:
+              properties:
+                elementClassAttribute: "container"
+                gridColumnClassAutoConfiguration:
+                  gridSize: 24
+                  viewPorts:
+                    sd:
+                      classPattern: "grid__col-sd-{@numbersOfColumnsToUse}"
+                    md:
+                      classPattern: "grid__col-md-{@numbersOfColumnsToUse}"
+                    xs:
+                      classPattern: "grid__col-xs-{@numbersOfColumnsToUse}"
+                    sm:
+                      classPattern: "grid__col-sm-{@numbersOfColumnsToUse}"
+                    lg:
+                      classPattern: "grid__col-lg-{@numbersOfColumnsToUse}"
+            ### FORM ELEMENTS: UPLOADS ###
+            FileUpload:
+              formEditor:
+                editors:
+                  300:
+                    selectOptions:
+                      80:
+                        value: "application/zip"
+                        label: "Documents (zip)"
+                      90:
+                        value: "application/rar"
+                        label: "Documents (rar)"
+                  400:
+                    selectOptions:
+                      30:
+                        value: "typo3temp/myFormUploadDestination/"
+                        label: "typo3temp/myFormUploadDestination/"
+                      40:
+                        value: "typo3temp/myFormUploadDestination2/"
+                        label: "typo3temp/myFormUploadDestination2/"
+      formManager:
+        selectablePrototypesConfiguration:
+          100:
+            newFormTemplates:
+              300:
+                templatePath: "EXT:lia_form/Resources/Private/Backend/Templates/FormEditor/Yaml/NewForms/DefaultContactForm.yaml"
+                label: "LIA Default contact form"
+              301:
+                templatePath: "EXT:my_extension/Configuration/Yaml/ContactFormWithFileUPloadPrototype.yaml"
+                label: "LIA Contact form with file upload"
+              302:
+                templatePath: "EXT:my_extension/Configuration/Yaml/ContactFormWithImageUploadPrototype.yaml"
+                label: "LIA Contact form with image upload"

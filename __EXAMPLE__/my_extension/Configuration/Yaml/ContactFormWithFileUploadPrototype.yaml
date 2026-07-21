@@ -1,0 +1,331 @@
+renderingOptions:
+  submitButtonLabel: Senden
+type: Form
+identifier: defaultform
+label: Formular Typ 3
+prototypeName: standard
+finishers:
+  - options:
+      subject: "Admin Mail: Kontaktanfrage"
+      recipients:
+        my-recipient@my-domain.com: ""
+      senderAddress: no-reply@my-domain.com
+      senderName: ""
+      replyToRecipients:
+        "{email}": ""
+      addHtmlPart: true
+      attachUploads: true
+      useFluidEmail: true
+      templatePathAndFilename: "EXT:my_extension/Resources/Private/Extensions/LiaForm/FormThree/Templates/Finishers/Email/Html.html"
+      templateName: Default
+      templateRootPaths:
+        300: "EXT:my_extension/Resources/Private/Extensions/LiaForm/FormThree/Templates/Finishers/Email/"
+      partialRootPaths:
+        300: "EXT:my_extension/Resources/Private/Extensions/LiaForm/FormThree/Partials/Email/"
+    identifier: EmailToReceiver
+  - options:
+      pageUid: "1"
+      additionalParameters: ""
+    identifier: Redirect
+renderables:
+  - renderingOptions:
+      previousButtonLabel: "Previous step"
+      nextButtonLabel: "Next step"
+    type: Page
+    identifier: page-1
+    label: ""
+    renderables:
+      - type: Fieldset
+        identifier: fieldsetContact
+        label: Kontaktdaten
+        renderables:
+          - type: GridRow
+            identifier: gridrow-2
+            label: "Grid: Row"
+            renderables:
+              - properties:
+                  gridColumnClassAutoConfiguration:
+                    viewPorts:
+                      xs:
+                        numbersOfColumnsToUse: "24"
+                      sm:
+                        numbersOfColumnsToUse: "24"
+                      sd:
+                        numbersOfColumnsToUse: "8"
+                      md:
+                        numbersOfColumnsToUse: "8"
+                      lg:
+                        numbersOfColumnsToUse: "8"
+                  options:
+                    female: Frau
+                    male: Herr
+                  fluidAdditionalAttributes:
+                    required: required
+                  prependOptionLabel: "Bitte wählen"
+                type: SingleSelect
+                identifier: salutation
+                label: Anrede
+                validators:
+                  - identifier: NotEmpty
+              - defaultValue: ""
+                type: Text
+                identifier: firstname
+                label: Vorname
+                properties:
+                  gridColumnClassAutoConfiguration:
+                    viewPorts:
+                      xs:
+                        numbersOfColumnsToUse: "12"
+                      sm:
+                        numbersOfColumnsToUse: "12"
+                      sd:
+                        numbersOfColumnsToUse: "8"
+                      md:
+                        numbersOfColumnsToUse: "8"
+                      lg:
+                        numbersOfColumnsToUse: "8"
+                  fluidAdditionalAttributes:
+                    required: required
+                  elementDescription: ""
+                validators:
+                  - identifier: NotEmpty
+              - defaultValue: ""
+                type: Text
+                identifier: lastname
+                label: Name
+                properties:
+                  gridColumnClassAutoConfiguration:
+                    viewPorts:
+                      xs:
+                        numbersOfColumnsToUse: "12"
+                      sm:
+                        numbersOfColumnsToUse: "12"
+                      sd:
+                        numbersOfColumnsToUse: "8"
+                      md:
+                        numbersOfColumnsToUse: "8"
+                      lg:
+                        numbersOfColumnsToUse: "8"
+                  fluidAdditionalAttributes:
+                    required: required
+                validators:
+                  - identifier: NotEmpty
+          - type: GridRow
+            identifier: gridrow-4
+            label: "Grid: Row"
+            renderables:
+              - defaultValue: ""
+                type: Text
+                identifier: company
+                label: Unternehmen
+                properties:
+                  gridColumnClassAutoConfiguration:
+                    viewPorts:
+                      xs:
+                        numbersOfColumnsToUse: "24"
+                      sm:
+                        numbersOfColumnsToUse: "12"
+                      sd:
+                        numbersOfColumnsToUse: "10"
+                      md:
+                        numbersOfColumnsToUse: "10"
+                      lg:
+                        numbersOfColumnsToUse: "8"
+              - defaultValue: ""
+                type: Text
+                identifier: street
+                label: Straße
+                properties:
+                  gridColumnClassAutoConfiguration:
+                    viewPorts:
+                      xs:
+                        numbersOfColumnsToUse: "16"
+                      sm:
+                        numbersOfColumnsToUse: "8"
+                      sd:
+                        numbersOfColumnsToUse: "10"
+                      md:
+                        numbersOfColumnsToUse: "10"
+                      lg:
+                        numbersOfColumnsToUse: "6"
+                  fluidAdditionalAttributes:
+                    required: required
+                validators:
+                  - identifier: NotEmpty
+              - defaultValue: ""
+                type: Text
+                identifier: housenumber
+                label: Hausnr.
+                properties:
+                  gridColumnClassAutoConfiguration:
+                    viewPorts:
+                      xs:
+                        numbersOfColumnsToUse: "8"
+                      sm:
+                        numbersOfColumnsToUse: "4"
+                      sd:
+                        numbersOfColumnsToUse: "4"
+                      md:
+                        numbersOfColumnsToUse: "4"
+                      lg:
+                        numbersOfColumnsToUse: "2"
+              - defaultValue: ""
+                type: Text
+                identifier: zipcode
+                label: PLZ
+                properties:
+                  gridColumnClassAutoConfiguration:
+                    viewPorts:
+                      xs:
+                        numbersOfColumnsToUse: "8"
+                      sm:
+                        numbersOfColumnsToUse: "4"
+                      sd:
+                        numbersOfColumnsToUse: "4"
+                      md:
+                        numbersOfColumnsToUse: "4"
+                      lg:
+                        numbersOfColumnsToUse: "3"
+              - defaultValue: ""
+                type: Text
+                identifier: city
+                label: Ort
+                properties:
+                  gridColumnClassAutoConfiguration:
+                    viewPorts:
+                      xs:
+                        numbersOfColumnsToUse: "16"
+                      sm:
+                        numbersOfColumnsToUse: "8"
+                      sd:
+                        numbersOfColumnsToUse: "10"
+                      md:
+                        numbersOfColumnsToUse: "10"
+                      lg:
+                        numbersOfColumnsToUse: "5"
+                  fluidAdditionalAttributes:
+                    required: required
+                validators:
+                  - identifier: NotEmpty
+          - type: GridRow
+            identifier: gridrow-1
+            label: "Grid: Row"
+            renderables:
+              - defaultValue: ""
+                type: Text
+                identifier: phone
+                label: Telefonnummer
+                properties:
+                  gridColumnClassAutoConfiguration:
+                    viewPorts:
+                      xs:
+                        numbersOfColumnsToUse: "16"
+                      sm:
+                        numbersOfColumnsToUse: "8"
+                      sd:
+                        numbersOfColumnsToUse: "10"
+                      md:
+                        numbersOfColumnsToUse: "10"
+                      lg:
+                        numbersOfColumnsToUse: "5"
+              - defaultValue: ""
+                type: Email
+                identifier: email
+                label: E-Mail
+                properties:
+                  gridColumnClassAutoConfiguration:
+                    viewPorts:
+                      xs:
+                        numbersOfColumnsToUse: "24"
+                      sm:
+                        numbersOfColumnsToUse: "12"
+                      sd:
+                        numbersOfColumnsToUse: "10"
+                      md:
+                        numbersOfColumnsToUse: "10"
+                      lg:
+                        numbersOfColumnsToUse: "8"
+                  fluidAdditionalAttributes:
+                    required: required
+                  elementDescription: ""
+                validators:
+                  - identifier: EmailAddress
+                  - identifier: NotEmpty
+              - defaultValue: ""
+                type: Text
+                identifier: website
+                label: Website
+                properties:
+                  gridColumnClassAutoConfiguration:
+                    viewPorts:
+                      xs:
+                        numbersOfColumnsToUse: "24"
+                      sm:
+                        numbersOfColumnsToUse: "12"
+                      sd:
+                        numbersOfColumnsToUse: "10"
+                      md:
+                        numbersOfColumnsToUse: "10"
+                      lg:
+                        numbersOfColumnsToUse: "8"
+      - type: Fieldset
+        identifier: data-fileupload
+        label: Dateiupload
+        renderables:
+          - properties:
+              gridColumnClassAutoConfiguration:
+                viewPorts:
+                  xs:
+                    numbersOfColumnsToUse: "24"
+                  sm:
+                    numbersOfColumnsToUse: "24"
+                  sd:
+                    numbersOfColumnsToUse: "24"
+                  md:
+                    numbersOfColumnsToUse: "24"
+                  lg:
+                    numbersOfColumnsToUse: "24"
+              saveToFileMount: typo3temp/formuploads/
+              allowedMimeTypes:
+                - application/msword
+                - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                - application/msexcel
+                - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+                - application/pdf
+                - application/vnd.oasis.opendocument.text
+                - application/vnd.oasis.opendocument.spreadsheet-template
+                - application/zip
+                - application/rar
+              elementDescription: "Es sind folgende Formate möglich: Word, PDF, ZIP, RAR | Maximale Größe: 5 MB pro Datei."
+              fluidAdditionalAttributes:
+                required: required
+            type: FileUpload
+            identifier: fileupload-1
+            label: "Datei hochladen"
+            validators:
+              - options:
+                  minimum: 0B
+                  maximum: 5M
+                identifier: FileSize
+              - identifier: NotEmpty
+      - type: Fieldset
+        identifier: fieldsetMessage
+        label: "Ihre Nachricht"
+        renderables:
+          - defaultValue: ""
+            type: Textarea
+            identifier: message
+            label: Message
+      - type: DataProtection
+        identifier: dataProtection
+        label: "Data Protection"
+        renderingOptions:
+          pageUid: "4"
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          elementDescription: " "
+          text: "Bitte akzeptieren Sie die %pagelink_text%"
+          linktext: Datenschutzerklärung
+        validators:
+          - identifier: NotEmpty

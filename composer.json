@@ -1,0 +1,75 @@
+{
+	"name": "lia/lia_form",
+	"type": "typo3-cms-extension",
+	"description": "Extends the core form extension, provides some new Form elements.",
+	"keywords": [
+		"typo3",
+		"form",
+		"form-elements",
+		"email-finisher"
+	],
+	"homepage": "https://github.com/LOUISINTERNET/lia_form",
+	"support": {
+		"issues": "https://github.com/LOUISINTERNET/lia_form/issues",
+		"docs": "https://docs.typo3.org/p/lia/lia_form/main/en-us/"
+	},
+	"authors": [
+		{
+			"name": "LOUIS TYPO3 Developers",
+			"email": "devs@louis.info",
+			"homepage": "https://www.louis.info",
+			"role": "Developer"
+		}
+	],
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"php": "^8.2",
+		"typo3/cms-core": "^13.4",
+		"typo3/cms-form": "^13.4"
+	},
+	"require-dev": {
+		"typo3/testing-framework": "^8.0",
+		"typo3/coding-standards": "^0.8.0",
+		"t3docs/fluid-documentation-generator": "^4.4"
+	},
+	"autoload": {
+		"psr-4": {
+			"LIA\\LiaForm\\": "Classes"
+		}
+	},
+	"replace": {
+		"typo3-ter/lia-form": "self.version",
+		"lia/lia-form": "self.version",
+		"typo3_ext/lia_form": "self.version"
+	},
+	"config": {
+		"vendor-dir": ".Build/vendor",
+		"bin-dir": ".Build/bin",
+		"allow-plugins": {
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true
+		}
+	},
+	"scripts": {
+		"post-autoload-dump": [
+			"TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
+		],
+		"viewhelper-docs": [
+			"FLUID_DOCUMENTATION_OUTPUT_DIR=Documentation/ViewHelpers .Build/bin/fluidDocumentation generate viewhelpers_config.json"
+		],
+		"build-docs": [
+			"docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:latest --config=Documentation"
+		],
+		"build-full-doc": [
+			"@viewhelper-docs",
+			"@build-docs"
+		]
+	},
+	"extra": {
+		"typo3/cms": {
+			"cms-package-dir": "{$vendor-dir}/typo3/cms",
+			"web-dir": ".Build/public",
+			"extension-key": "lia_form"
+		}
+	}
+}

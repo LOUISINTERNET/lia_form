@@ -1,0 +1,24 @@
+{namespace formvh=TYPO3\CMS\Form\ViewHelpers}
+{namespace liaform=LIA\LiaForm\ViewHelpers}
+{f:translate(key: 'mail.{salutation}', extensionName:'LiaForm') -> f:variable(name: 'salutationText')}
+<f:translate key="mail.salutation" extensionName="LiaForm" arguments="{0: salutationText, 1: senderName}" />
+
+<f:translate key="mail.introduction" extensionName="LiaForm" />
+{f:format.date(date: requestTime, format:'Y-m-d H:i:s') -> f:variable(name: 'formattedRequestTime')}<f:translate key="mail.request_time" arguments="{0: formattedRequestTime}" extensionName="LiaForm" />
+<f:render partial="Footer.txt" arguments="{_all}" />
+
+<f:comment>
+<formvh:renderAllFormValues renderable="{form.formDefinition}" as="formValue"><f:spaceless>
+<f:if condition="{formValue.element.type} != 'FileUpload' && {formValue.element.type} != 'ImageUpload' && {formValue.element.type} != 'Recaptcha' && {formValue.element.type} != 'DataProtection' && {formValue.element.type} != 'HtmlCode' && {formValue.element.type} != 'Fieldset'">
+  {formvh:translateElementProperty(element: formValue.element,property: 'label')}: <f:if condition="{formValue.value}"><f:if condition="{formValue.isMultiValue}">
+      <f:then><f:for each="{formValue.processedValue}" as="value">{value}
+        </f:for>
+      </f:then>
+      <f:else>{formValue.processedValue}
+      </f:else>
+    </f:if>
+  </f:if>
+</f:if>
+</f:spaceless>
+</formvh:renderAllFormValues>
+</f:comment>

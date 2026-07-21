@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2018-06-19T10:37:03Z">
+		<header>
+			<generator>LFEditor</generator>
+		</header>
+		<body>
+			<trans-unit id="tt_content.pi_flexform.formframework.cssClass">
+				<source><![CDATA[Additional CSS Class]]></source>
+				<target><![CDATA[Zusätzliche CSS Klasse]]></target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

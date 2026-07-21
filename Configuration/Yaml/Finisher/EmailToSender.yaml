@@ -1,0 +1,52 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formElementsDefinition:
+            Form:
+              formEditor:
+                propertyCollections:
+                  finishers:
+                    10:
+                      editors:
+                        1250:
+                          identifier: 'attachments'
+                          templateName: 'Inspector-TextEditor'
+                          label: 'Attachments'
+                          fieldExplanationText: 'Comma separated list of file UIDs: 63,71. Allowed file types: pdf, docx, xlsx, jpg'
+                          propertyPath: 'options.attachments'
+          finishersDefinition:
+            EmailToSender:
+              formEditor:
+                iconIdentifier: 'form-finisher'
+                label: 'formEditor.elements.Form.finisher.EmailToSender.editor.header.label'
+                predefinedDefaults:
+                  options:
+                    attachments: ''
+              FormEngine:
+                label: 'formEditor.elements.Form.finisher.EmailToSender.editor.header.label'
+                elements:
+                  attachments:
+                    label: 'Attachments'
+                    config:
+                      type: 'group'
+                      internal_type: 'db'
+                      allowed: 'sys_file'
+                      size: 5
+                      minitems: 0
+                      maxitems: 5
+                      show_thumbs: 1
+                      appearance:
+                        elementBrowserType: file
+                        elementBrowserAllowed: pdf, docx, xlsx, jpg
+        mixins:
+          formElementMixins:
+            formEmailFinisherMixin:
+              editors:
+                1250:
+                  identifier: 'attachments'
+                  templateName: 'Inspector-TextEditor'
+                  label: 'Attachments'
+                  fieldExplanationText: 'Comma separated list of file UIDs: 63,71. Allowed file types: pdf,docx,xlsx,jpg'
+                  propertyPath: 'options.attachments'

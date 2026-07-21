@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2018-08-09T10:14:34Z">
+		<header>
+			<generator>LFEditor</generator>
+		</header>
+		<body>
+			<trans-unit id="defaultform.element.dataProtection.properties.label" approved="yes">
+				<source><![CDATA[Privacy Policy Approved]]></source>
+				<target><![CDATA[Datenschutzerklärung zugestimmt]]></target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

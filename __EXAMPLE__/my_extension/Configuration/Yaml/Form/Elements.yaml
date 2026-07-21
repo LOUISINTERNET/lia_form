@@ -1,0 +1,204 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formElementsDefinition:
+            AdvancedPassword:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            Checkbox:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            Date:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            DataProtection:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: 'Small medium'
+            DatePicker:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            Email:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            Fieldset:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            FileUpload:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            GridRow:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            Honeypot:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            Hidden:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            ImageUpload:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            MultiCheckbox:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            Number:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            MultiSelect:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            Password:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            RadioButton:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            SingleSelect:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            Telephone:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            Textarea:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            Url:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"
+            Text:
+              formEditor:
+                editors:
+                  700:
+                    configurationOptions:
+                      viewPorts:
+                        25:
+                          viewPortIdentifier: sd
+                          label: "Small medium"

@@ -1,0 +1,19 @@
+
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formEditor:
+            dynamicJavaScriptModules:
+              additionalViewModelModules:
+                1739283630: '@lia/lia-form/backend/form-editor/view-model.js'
+          formElementsDefinition:
+            Form:
+              formEditor:
+                editors:
+                  440:
+                    identifier: cssClass
+                    templateName: Inspector-TextEditor
+                    label: Additional CSS Class
+                    propertyPath: renderingOptions.cssClass

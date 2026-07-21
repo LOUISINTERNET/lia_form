@@ -1,0 +1,63 @@
+{namespace formvh=TYPO3\CMS\Form\ViewHelpers}
+{namespace liaform=LIA\LiaForm\ViewHelpers}
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+  </head>
+
+  <body>
+    <p>
+      {f:translate(key: 'mail.{salutation}', extensionName:'LiaForm') -> f:variable(name: 'salutationText')}
+      <f:translate key="mail.salutation" extensionName="LiaForm" arguments="{0: salutationText, 1: senderName}" />
+    </p>
+    <p>
+      <f:translate key="mail.introduction" extensionName="LiaForm" />
+    </p>
+    <p>
+      {f:format.date(date: requestTime, format:'Y-m-d H:i:s') -> f:variable(name: 'formattedRequestTime')}
+      <f:translate key="mail.request_time" arguments="{0: formattedRequestTime}" extensionName="LiaForm" />
+    </p>
+    <f:render partial="Footer" arguments="{_all}" />
+
+    <f:comment>
+      <table width="600" cellpadding="0" cellspacing="0" border="0">
+        <formvh:renderAllFormValues renderable="{form.formDefinition}" as="formValue" >
+          <f:if condition="{formValue.element.type} != 'FileUpload' && {formValue.element.type} != 'ImageUpload' && {formValue.element.type} != 'Recaptcha' && {formValue.element.type} != 'DataProtection' && {formValue.element.type} != 'HtmlCode' && {formValue.element.type} != 'Fieldset'">
+            <tr>
+              <td width="600" valign="top" align="left">
+                {formvh:translateElementProperty(element: formValue.element,property: 'label')}
+              </td>
+              <td width="600" valign="top" align="left">
+                <f:if condition="{formValue.value}">
+                  <f:if condition="{formValue.isMultiValue}">
+                    <f:then>
+                      <table cellspacing="0" border="0">
+                        <f:for each="{formValue.processedValue}" as="value">
+                          <tr>
+                            <td>{value}</td>
+                          </tr>
+                        </f:for>
+                      </table>
+                    </f:then>
+                    <f:else>
+                      <table cellspacing="0" border="0">
+                        <tr>
+                          <td>
+                            <f:format.nl2br>{formValue.processedValue}</f:format.nl2br>
+                          </td>
+                        </tr>
+                      </table>
+                    </f:else>
+                  </f:if>
+                </f:if>
+              </td>
+            </tr>
+          </f:if>
+        </formvh:renderAllFormValues>
+      </table>
+    </f:comment>
+  </body>
+</html>
