@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Extension Manager/Repository config file for ext:lia_form.
  */
-$EM_CONF[$_EXTKEY ?? 'lia_form'] = [
+$EM_CONF[$_EXTKEY] = [
     'title' => 'LIA Form',
     'description' => 'Extends the core form extension.',
     'category' => 'plugin',
@@ -13,7 +11,7 @@ $EM_CONF[$_EXTKEY ?? 'lia_form'] = [
     'author_company' => 'LOUIS INTERNET',
     'author_email' => 'devs@louis.info',
     'state' => 'stable',
-    'version' => '2.0.0',
+    'version' => '2.0.1',
     'constraints' => [
         'depends' => [
             'typo3' => '14.3.0-14.99.99',
