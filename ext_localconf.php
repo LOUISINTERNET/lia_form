@@ -11,9 +11,7 @@ declare(strict_types=1);
 
 use LIA\LiaForm\Hooks\FlexFormHook;
 use LIA\LiaForm\XClass\FormDefinition;
-use LIA\LiaForm\XClass\FormRuntime;
 use TYPO3\CMS\Form\Domain\Model\FormDefinition as CoreFormDefinition;
-use TYPO3\CMS\Form\Domain\Runtime\FormRuntime as CoreFormRuntime;
 
 defined('TYPO3') || die();
 
@@ -25,15 +23,8 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][CoreFormDefinition::class] = [
     'className' => FormDefinition::class,
 ];
 
-$GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][CoreFormRuntime::class] = [
-    'className' => FormRuntime::class,
-];
-
 // DataHandler hook to modify form flexform.
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = FlexFormHook::class;
 
-// Note: Form Framework hooks removed in TYPO3 v14.
-// Event listeners registered via #[AsEventListener] PHP attributes in Classes/EventListener/:
-// - AfterInitializeCurrentPageEventListener (replaces afterInitializeCurrentPage hook)
-// - AfterFormSubmitEventListener (replaces afterSubmit hook)
-// - BeforeFormElementCreatedEventListener (replaces initializeFormElement hook)
+// Note: Form Framework hooks were removed in TYPO3 v14. Their replacements live in
+// Classes/EventListener/, registered via #[AsEventListener] attributes.

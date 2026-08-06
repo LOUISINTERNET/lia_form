@@ -1,4 +1,4 @@
-.. _BeforeFormDefinitionCreatesEvent
+..  _BeforeFormDefinitionCreatesEvent:
 
 ================================
 BeforeFormDefinitionCreatesEvent
@@ -7,49 +7,44 @@ BeforeFormDefinitionCreatesEvent
 This event is dispatched in the ExtendedArrayFormFactory and provide the possibility
 to manipulate the form configuration before FormDefinition class is created.
 
-
-.. _attributes
-
 Attributes
 ==========
 
-.. confval:: formDefintionConfigArray
+..  confval:: formDefintionConfigArray
     :name: formDefintionConfigArray
     :required: true
     :type: array
 
     This is the configuration array of the form definition.
 
-.. confval:: request
+..  confval:: request
     :name: request
     :required: true
     :type: ServerRequestInterface
 
-    .. attention::
+    ..  attention::
         This attribute is readonly.
 
     This is the current server request object.
 
 
-.. confval:: renderedForms
+..  confval:: renderedForms
     :name: renderedForms
     :required: true
     :type: integer
 
-    .. attention::
+    ..  attention::
         This attribute is readonly.
 
     This is the count of rendered form on the current page.
-
-.. _subscribe-this-event
 
 Subscribe this event
 ====================
 
 First create an EventListener class in your Extension. It may look like this.
 
-.. code-block:: php
-    :caption: EXT:my_extension/Classes/EventListeners/BeforeFormDefinitionCreatesEventListener.php
+..  code-block:: php
+    :caption: EXT:my_extension/Classes/EventListener/BeforeFormDefinitionCreatesEventListener.php
 
     <?php
     declare(strict_types=1);
@@ -68,15 +63,19 @@ First create an EventListener class in your Extension. It may look like this.
         */
         public function __invoke(BeforeFormDefinitionCreatesEvent $event): void
         {
-            // do some crazy stuff ...
+            $formConfiguration = $event->getFormDefinitionConfigArray();
 
-            $event->setFormDefinitionConfigArray($formconfiguration);
+            $formConfiguration['renderingOptions']['submitButtonLabel'] = 'Send';
+
+            // The configuration is an array, so it is copied on read: the setter
+            // is what makes the change take effect.
+            $event->setFormDefinitionConfigArray($formConfiguration);
         }
     }
 
 Now register this EventListener in your `Services.yaml`.
 
-.. code-block:: yaml
+..  code-block:: yaml
     :caption: EXT:my_extension/Configuration/Services.yaml
 
     MY\MyExtension\EventListener\BeforeFormDefinitionCreatesEventListener:

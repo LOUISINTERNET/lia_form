@@ -1,17 +1,18 @@
 :navigation-title: Configuration
+
 ..  _configuration:
 
 =============
 Configuration
 =============
 
-.. attention::
+..  attention::
     First load the typoscript of this extension in your static template.
 
 This extension provides also an :ref:`example configuration <exampleConfig>`.
 
 
-.. contents::
+..  contents::
     :local:
     :depth: 1
 
@@ -30,7 +31,7 @@ To override the default yaml configuration create your own configuration set
 in your extension. Use a priority between 101 and 198 so it loads after the
 base setup and before the element definitions.
 
-.. code-block:: yaml
+..  code-block:: yaml
     :caption: EXT:my_extension/Configuration/Form/MyExtensionForms/config.yaml
 
     name: my-vendor/my-extension-forms
@@ -42,7 +43,7 @@ base setup and before the element definitions.
 No TypoScript registration is required — the set is discovered automatically
 in frontend and backend.
 
-.. note::
+..  note::
     The former TypoScript-based registration via
     `plugin.tx_form.settings.yamlConfigurations` /
     `module.tx_form.settings.yamlConfigurations` is deprecated since
@@ -56,8 +57,9 @@ Yaml Configuration
 If you do not have a `CustomFormSetup.yaml` then create it in the path of the settings and past the following snippet.
 Here you have to adjust the path to your extension.
 
-.. code-block:: yaml
+..  code-block:: yaml
     :caption: EXT:my_extension/Configuration/Yaml/CustomFormSetup.yaml
+
     imports:
       - { resource: "./Form/Elements.yaml" }
 

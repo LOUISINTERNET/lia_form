@@ -29,10 +29,6 @@ services:
     public: true
     shared: false
 
-  # TypoScriptReaderService - Singleton for request-scoped caching
-  LIA\LiaForm\Services\TypoScriptReaderService:
-    public: true
-
   # FormPersistenceManager is public: false in EXT:form — expose it so makeInstance() can resolve it
   # in the FlexFormHook (DataHandler hook; no constructor injection available)
   TYPO3\CMS\Form\Mvc\Persistence\FormPersistenceManager:

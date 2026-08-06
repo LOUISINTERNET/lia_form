@@ -44,7 +44,7 @@ Extends the core form extension and provide some new form elements.
 
     ..  card:: :ref:`EventListener <eventlistener>`
 
-        A list of all provided events and how-to use them.
+        A list of all core events this extension subscribes to.
 
     ..  card:: :ref:`Schedule tasks <scheduleTasks>`
 

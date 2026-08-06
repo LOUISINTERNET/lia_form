@@ -1,4 +1,4 @@
-.. _BeforePhoneAreaCodeInitializeEvent
+..  _BeforePhoneAreaCodeInitializeEvent:
 
 ==================================
 BeforePhoneAreaCodeInitializeEvent
@@ -9,13 +9,10 @@ form element is initialized. It provides the possibility to replace the default
 area code list (``EXT:lia_form/Configuration/Data/PhoneAreaCodeList.json``)
 with a custom JSON data source.
 
-
-.. _attributes
-
 Attributes
 ==========
 
-.. confval:: dataSourcePath
+..  confval:: dataSourcePath
     :name: dataSourcePath
     :required: true
     :type: string
@@ -23,16 +20,13 @@ Attributes
     Path to a JSON file containing the area code list. ``EXT:`` paths are
     resolved automatically.
 
-
-.. _subscribe-this-event
-
 Subscribe this event
 ====================
 
 First create an EventListener class in your Extension. It may look like this.
 
-.. code-block:: php
-    :caption: EXT:my_extension/Classes/EventListeners/BeforePhoneAreaCodeInitializeEventListener.php
+..  code-block:: php
+    :caption: EXT:my_extension/Classes/EventListener/BeforePhoneAreaCodeInitializeEventListener.php
 
     <?php
     declare(strict_types=1);
@@ -57,7 +51,7 @@ First create an EventListener class in your Extension. It may look like this.
 
 Now register this EventListener in your `Services.yaml`.
 
-.. code-block:: yaml
+..  code-block:: yaml
     :caption: EXT:my_extension/Configuration/Services.yaml
 
     MY\MyExtension\EventListener\BeforePhoneAreaCodeInitializeEventListener:

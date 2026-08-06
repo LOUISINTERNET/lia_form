@@ -1,4 +1,4 @@
-.. _liaSiteTitle:
+..  _liaSiteTitle:
 
 ============
 LiaSiteTitle
@@ -7,7 +7,7 @@ LiaSiteTitle
 This field is hidden and automatic filled with the current page title.
 
 
-.. confval:: label
+..  confval:: label
     :name: lia-site-title-label
     :required: false
     :type: string
@@ -15,7 +15,7 @@ This field is hidden and automatic filled with the current page title.
 
     The field label
 
-.. confval:: elementDescription
+..  confval:: elementDescription
     :name: lia-site-title-element-description
     :required: false
     :type: string
@@ -23,7 +23,7 @@ This field is hidden and automatic filled with the current page title.
 
     The field description.
 
-.. confval:: text
+..  confval:: text
     :name: lia-site-title-text
     :required: false
     :type: string
@@ -31,14 +31,14 @@ This field is hidden and automatic filled with the current page title.
 
     The field description.
 
-.. confval:: gridColumnViewPortConfiguration
+..  confval:: gridColumnViewPortConfiguration
     :name: lia-site-title-grid-column-view-port-configuration
     :required: false
     :type: GridColumnViewPortConfigurationEditor
 
     Grid settings.
 
-.. confval:: requiredValidator
+..  confval:: requiredValidator
     :name: lia-site-title-required-validator
     :required: false
     :type: RequiredValidatorEditor
