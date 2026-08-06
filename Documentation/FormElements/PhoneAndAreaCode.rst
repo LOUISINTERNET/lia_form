@@ -1,4 +1,4 @@
-.. _phoneAndAreaCode:
+..  _phoneAndAreaCode:
 
 ================
 PhoneAndAreaCode
@@ -12,7 +12,7 @@ The list of area codes is loaded from
 ``EXT:lia_form/Configuration/Data/PhoneAreaCodeList.json``. Each entry consists
 of a country name, the dial code and the ISO country code:
 
-.. code-block:: json
+..  code-block:: json
 
     {
       "name": "Germany",
@@ -25,7 +25,7 @@ To use a custom data source, subscribe to the
 and set your own path to a JSON file with the same structure.
 
 
-.. confval:: label
+..  confval:: label
     :name: phone-and-area-code-label
     :required: false
     :type: string
@@ -33,7 +33,7 @@ and set your own path to a JSON file with the same structure.
 
     The field label
 
-.. confval:: elementDescription
+..  confval:: elementDescription
     :name: phone-and-area-code-element-description
     :required: false
     :type: string
@@ -41,7 +41,7 @@ and set your own path to a JSON file with the same structure.
 
     The field description.
 
-.. confval:: areaCodeClass
+..  confval:: areaCodeClass
     :name: phone-and-area-code-area-code-class
     :required: false
     :type: string
@@ -49,7 +49,7 @@ and set your own path to a JSON file with the same structure.
 
     CSS class added to the area code select box.
 
-.. confval:: class
+..  confval:: class
     :name: phone-and-area-code-class
     :required: false
     :type: string
@@ -57,14 +57,14 @@ and set your own path to a JSON file with the same structure.
 
     CSS class added to the phone number text field.
 
-.. confval:: gridColumnViewPortConfiguration
+..  confval:: gridColumnViewPortConfiguration
     :name: phone-and-area-code-grid-column-view-port-configuration
     :required: false
     :type: GridColumnViewPortConfigurationEditor
 
     Grid settings.
 
-.. confval:: requiredValidator
+..  confval:: requiredValidator
     :name: phone-and-area-code-required-validator
     :required: false
     :type: RequiredValidatorEditor

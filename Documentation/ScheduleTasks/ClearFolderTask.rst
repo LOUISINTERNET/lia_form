@@ -1,4 +1,4 @@
-.. _clearFolderTask:
+..  _clearFolderTask:
 
 ===============
 ClearFolderTask
@@ -10,7 +10,7 @@ files can get. And all older files will be deleted.
 Additional settings
 ===================
 
-.. confval:: liaHoursToLive
+..  confval:: liaHoursToLive
     :name: liaHoursToLive
     :required: false
     :type: integer
@@ -18,7 +18,7 @@ Additional settings
 
     Define the maximum live time of uploaded files.
 
-.. confval:: liaFolderToClear
+..  confval:: liaFolderToClear
     :name: liaFolderToClear
     :required: false
     :type: integer

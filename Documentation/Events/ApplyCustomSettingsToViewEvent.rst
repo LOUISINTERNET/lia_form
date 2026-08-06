@@ -1,4 +1,4 @@
-.. _applyCustomSettingsToViewEvent:
+..  _applyCustomSettingsToViewEvent:
 
 ==============================
 ApplyCustomSettingsToViewEvent
@@ -9,7 +9,7 @@ Allows you to add your own settings to the view.
 Attributes
 ==========
 
-.. confval:: emailView
+..  confval:: emailView
     :name: emailView
     :required: true
     :type: TYPO3\CMS\Core\Mail\FluidEmail
@@ -21,8 +21,8 @@ Subscribe this event
 
 First create an EventListener class in your Extension. It may look like this.
 
-.. code-block:: php
-    :caption: EXT:my_extension/Classes/EventListeners/ApplyCustomSettingsToViewEventListener.php
+..  code-block:: php
+    :caption: EXT:my_extension/Classes/EventListener/ApplyCustomSettingsToViewEventListener.php
 
     <?php
     declare(strict_types=1);
@@ -41,15 +41,15 @@ First create an EventListener class in your Extension. It may look like this.
         */
         public function __invoke(ApplyCustomSettingsToViewEvent $event): void
         {
-            // do some crazy stuff ...
-
-            $event->setEmailView($emailView);
+            // The view is an object, so assigning to it is enough. Call
+            // setEmailView() only to swap in a different FluidEmail instance.
+            $event->getEmailView()->assign('myCustomVariable', 'someValue');
         }
     }
 
 Now register this EventListener in your `Services.yaml`.
 
-.. code-block:: yaml
+..  code-block:: yaml
     :caption: EXT:my_extension/Configuration/Services.yaml
 
     MY\MyExtension\EventListener\ApplyCustomSettingsToViewEventListener:

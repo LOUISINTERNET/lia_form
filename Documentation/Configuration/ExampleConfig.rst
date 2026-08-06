@@ -1,4 +1,4 @@
-.. _exampleConfig:
+..  _exampleConfig:
 
 =====================
 Example configuration
@@ -32,7 +32,7 @@ in the same directory where you pasted the CustomFormSetup.yaml in.
 
 If you do not need them you can delete this part of code out this file.
 
-.. code-block:: yaml
+..  code-block:: yaml
     :caption: Prototype registration
 
     formManager:

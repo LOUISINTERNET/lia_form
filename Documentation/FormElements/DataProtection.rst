@@ -1,10 +1,10 @@
-.. _dataProtection:
+..  _dataProtection:
 
 ==============
 DataProtection
 ==============
 
-.. contents::
+..  contents::
     :local:
     :depth: 1
 
@@ -13,7 +13,7 @@ This is a checkbox field which provides a reference to the privacy policy
 with a link to the corresponding page.
 
 
-.. confval:: label
+..  confval:: label
     :name: data-protection-label
     :required: false
     :type: string
@@ -21,7 +21,7 @@ with a link to the corresponding page.
 
     The field label
 
-.. confval:: elementDescription
+..  confval:: elementDescription
     :name: data-protection-element-description
     :required: false
     :type: string
@@ -29,7 +29,7 @@ with a link to the corresponding page.
 
     The field description.
 
-.. confval:: pageUid
+..  confval:: pageUid
     :name: data-protection-page-uid
     :required: false
     :type: Typo3WinBrowserEditor
@@ -37,7 +37,7 @@ with a link to the corresponding page.
 
     A page selection to choose the page with the privacy policy.
 
-.. confval:: text
+..  confval:: text
     :name: data-protection-text
     :required: false
     :type: string
@@ -45,7 +45,7 @@ with a link to the corresponding page.
 
     This text is used as label for the checkbox. Use `%pagelink_text%` as placeholder for the link.
 
-.. confval:: linktext
+..  confval:: linktext
     :name: data-protection-linktext
     :required: false
     :type: string
@@ -53,14 +53,14 @@ with a link to the corresponding page.
 
     This text is used for the link to the selected page.
 
-.. confval:: gridColumnViewPortConfiguration
+..  confval:: gridColumnViewPortConfiguration
     :name: data-protection-grid-column-view-port-configuration
     :required: false
     :type: GridColumnViewPortConfigurationEditor
 
     Grid settings.
 
-.. confval:: requiredValidator
+..  confval:: requiredValidator
     :name: data-protection-required-validator
     :required: false
     :type: RequiredValidatorEditor

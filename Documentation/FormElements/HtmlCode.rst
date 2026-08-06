@@ -1,4 +1,4 @@
-.. _htmlCode:
+..  _htmlCode:
 
 ========
 HtmlCode
@@ -6,7 +6,7 @@ HtmlCode
 
 This field enables the maintenance of an HTML element in the form.
 
-.. confval:: label
+..  confval:: label
     :name: html-code-label
     :required: false
     :type: string
@@ -14,7 +14,7 @@ This field enables the maintenance of an HTML element in the form.
 
     The field label
 
-.. confval:: elementDescription
+..  confval:: elementDescription
     :name: html-code-element-description
     :required: false
     :type: string
@@ -22,7 +22,7 @@ This field enables the maintenance of an HTML element in the form.
 
     The field description.
 
-.. confval:: text
+..  confval:: text
     :name: html-code-text
     :required: false
     :type: string
@@ -30,7 +30,7 @@ This field enables the maintenance of an HTML element in the form.
 
     The field description.
 
-.. confval:: font
+..  confval:: font
     :name: html-code-font
     :required: false
     :type: string
@@ -38,7 +38,7 @@ This field enables the maintenance of an HTML element in the form.
 
     Selection of the html tag.
 
-.. confval:: align
+..  confval:: align
     :name: html-code-align
     :required: false
     :type: string
@@ -46,14 +46,14 @@ This field enables the maintenance of an HTML element in the form.
 
     Selection of the text alignment.
 
-.. confval:: gridColumnViewPortConfiguration
+..  confval:: gridColumnViewPortConfiguration
     :name: html-code-grid-column-view-port-configuration
     :required: false
     :type: GridColumnViewPortConfigurationEditor
 
     Grid settings.
 
-.. confval:: requiredValidator
+..  confval:: requiredValidator
     :name: html-code-required-validator
     :required: false
     :type: RequiredValidatorEditor

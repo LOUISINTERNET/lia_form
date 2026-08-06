@@ -1,17 +1,18 @@
 :navigation-title: Configuration
+
 ..  _configuration:
 
 =============
 Configuration
 =============
 
-.. attention::
+..  attention::
     First load the typoscript of this extension in your static template.
 
 This extension provides also an :ref:`example configuration <exampleConfig>`.
 
 
-.. contents::
+..  contents::
     :local:
     :depth: 1
 
@@ -23,7 +24,7 @@ To override the default typoscript and yaml configuration create a `Setup.typosc
 Now copy this snippet in this file and adjust the path to your `CustomFormSetup.yaml` if you already have on otherwise create it in the set path and adjust the
 extension name in this path.
 
-.. code-block:: typoscript
+..  code-block:: typoscript
     :caption: EXT:my_extension/Configuration/TypoScript/Extensions/LiaForm
 
     @import 'EXT:form/Configuration/TypoScript/'
@@ -71,8 +72,9 @@ Yaml Configuration
 If you do not have a `CustomFormSetup.yaml` then create it in the path of the settings and past the following snippet.
 Here you have to adjust the path to your extension.
 
-.. code-block:: yaml
+..  code-block:: yaml
     :caption: EXT:my_extension/Configuration/Yaml/CustomFormSetup.yaml
+
     imports:
       - { resource: "./Form/Elements.yaml" }
 

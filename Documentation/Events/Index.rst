@@ -1,4 +1,4 @@
-.. _Events
+..  _Events:
 
 ======
 Events
