@@ -9,18 +9,23 @@
 
 namespace LIA\LiaForm\Finisher;
 
+use LIA\LiaForm\Domain\Model\FormElements\AttachableUploadElementInterface;
 use LIA\LiaForm\Event\ApplyCustomSettingsToViewEvent;
 use LIA\LiaForm\Event\Finisher\SetDefaultValueEvent;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mime\Address;
 use TYPO3\CMS\Core\Mail\FluidEmail;
+use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Form\Domain\Finishers\EmailFinisher as CoreEmailFinisher;
 use TYPO3\CMS\Form\Domain\Finishers\Exception\FinisherException;
 use TYPO3\CMS\Form\Domain\Model\FormElements\FileUpload;
 use TYPO3\CMS\Form\Domain\Runtime\FormRuntime;
+use TYPO3\CMS\Form\Event\BeforeEmailFinisherInitializedEvent;
 
 /**
  * Extended email finisher with separate admin and user mail processing.
@@ -121,6 +126,11 @@ class EmailFinisher extends CoreEmailFinisher
      */
     protected function executeInternal(): void
     {
+        // Let listeners modify the finisher options before they are read (as the core finisher does).
+        $this->options = $this->eventDispatcher
+            ->dispatch(new BeforeEmailFinisherInitializedEvent($this->finisherContext, $this->options))
+            ->getOptions();
+
         // Flexform overrides write strings instead of integers.
         if (
             isset($this->options['addHtmlPart'])
@@ -129,13 +139,13 @@ class EmailFinisher extends CoreEmailFinisher
             $this->options['addHtmlPart'] = false;
         }
 
-        $subjectOption = $this->parseOption('subject');
+        $subjectOption = $this->parseOptionForDisplay('subject');
         $subject = is_scalar($subjectOption) ? (string)$subjectOption : '';
         $recipients = $this->getRecipients('recipients');
         $senderAddress = $this->parseOption('senderAddress');
         $senderAddress = is_string($senderAddress) ? $senderAddress : '';
 
-        $senderName = $this->parseOption('senderName');
+        $senderName = $this->parseOptionForDisplay('senderName');
         $senderName = is_string($senderName) ? $senderName : '';
 
         $replyToRecipients = $this->getRecipients('replyToRecipients');
@@ -154,7 +164,7 @@ class EmailFinisher extends CoreEmailFinisher
         }
         $addHtmlPart = (bool)$this->parseOption('addHtmlPart');
         $attachUploads = $this->parseOption('attachUploads');
-        $title = $this->parseOption('title');
+        $title = $this->parseOptionForDisplay('title');
         $title = is_string($title) && $title !== '' ? $title : $subject;
 
         $attachmentsOption = $this->parseOption('attachments');
@@ -201,23 +211,82 @@ class EmailFinisher extends CoreEmailFinisher
             $mail->bcc(...$blindCarbonCopyRecipients);
         }
 
+        $this->assignMessageToMail($mail);
+
         if ($attachUploads) {
             $this->attachUploadsToMail($formRuntime, $mail);
             $this->attachFilesToMail($mail, $attachments);
         }
 
-        $this->mailer->send($mail);
+        try {
+            $this->mailer->send($mail);
+        } catch (TransportExceptionInterface $exception) {
+            throw new FinisherException(
+                'Failed to send the email: ' . $exception->getMessage(),
+                1754047320,
+                $exception
+            );
+        }
+    }
+
+    /**
+     * Assign the finisher option "message" to the mail, split at the {formValues} placeholder.
+     *
+     * Mirrors the core EmailFinisher: the core mail templates render messageBefore,
+     * the form values and messageAfter; without placeholder the form values are hidden.
+     */
+    protected function assignMessageToMail(FluidEmail $mail): void
+    {
+        $message = $this->parseOptionForDisplay('message');
+        if (!is_string($message) || $message === '') {
+            return;
+        }
+
+        // Remove whitespace between HTML tags to prevent lib.parseFunc_RTE
+        // from converting newlines into additional blank lines in the email output.
+        $message = (string)preg_replace('/>\s+</', '><', $message);
+        $placeholderPosition = strpos($message, '{formValues}');
+        if ($placeholderPosition === false) {
+            $mail->assign('messageBefore', $message);
+            $mail->assign('messageAfter', '');
+            $mail->assign('hideFormValues', true);
+            return;
+        }
+
+        $mail->assign('messageBefore', substr($message, 0, $placeholderPosition));
+        $mail->assign('messageAfter', substr($message, $placeholderPosition + strlen('{formValues}')));
+    }
+
+    /**
+     * Parse an option that is read by a human (subject, sender name, title, message).
+     *
+     * Since TYPO3 14.3.7 the core resolves {<elementIdentifier>} in these options to the
+     * display value, e.g. the translated label of a select option instead of its key
+     * (Important-106903). On 14.3.0 to 14.3.6 parseOptionAsDisplayValue() does not exist
+     * yet, so the plain parseOption() is used there to stay compatible from 14.3.0 on.
+     *
+     * @return string|array|int|bool|\Closure|callable|null
+     */
+    private function parseOptionForDisplay(string $optionName)
+    {
+        if (method_exists($this, 'parseOptionAsDisplayValue')) {
+            return $this->parseOptionAsDisplayValue($optionName);
+        }
+
+        return $this->parseOption($optionName);
     }
 
     /**
      * Predicate deciding which form elements contribute file attachments.
      *
-     * Extension point for subclasses to attach custom upload element types
-     * without overriding executeInternal().
+     * Covers the core FileUpload element and every element implementing
+     * AttachableUploadElementInterface - the extension point for custom
+     * upload elements shipped by other extensions.
      */
     protected function isAttachableUploadElement(mixed $element): bool
     {
-        return $element instanceof FileUpload;
+        return $element instanceof FileUpload
+            || $element instanceof AttachableUploadElementInterface;
     }
 
     /**
@@ -230,30 +299,50 @@ class EmailFinisher extends CoreEmailFinisher
                 continue;
             }
 
-            $file = $formRuntime[$element->getIdentifier()];
+            $value = $formRuntime[$element->getIdentifier()];
 
-            if ($file === null) {
-                continue;
-            }
-
-            // Multiple files.
-            if (is_array($file) && isset($file[0])) {
-                foreach ($file as $item) {
-                    if ($item instanceof FileReference) {
-                        $item = $item->getOriginalResource();
-                    }
-                    $mail->attach($item->getContents(), $item->getName(), $item->getMimeType());
+            // Multiple files: ObjectStorage (core FileUpload with "multiple") or a list (custom elements).
+            if ($value instanceof ObjectStorage || is_array($value)) {
+                foreach ($value as $item) {
+                    $this->attachFileToMail($mail, $item, $element->getIdentifier());
                 }
                 continue;
             }
 
-            // Single file.
-            if ($file instanceof FileReference) {
-                $file = $file->getOriginalResource();
-            }
-
-            $mail->attach($file->getContents(), $file->getName(), $file->getMimeType());
+            $this->attachFileToMail($mail, $value, $element->getIdentifier());
         }
+    }
+
+    /**
+     * Attach a single uploaded file value to the mail.
+     *
+     * A null value means "no file uploaded" and is skipped. Any other value that is
+     * neither a FileReference nor a FileInterface violates the element contract.
+     *
+     * @throws FinisherException
+     */
+    private function attachFileToMail(FluidEmail $mail, mixed $value, string $elementIdentifier): void
+    {
+        if ($value === null) {
+            return;
+        }
+
+        if ($value instanceof FileReference) {
+            $value = $value->getOriginalResource();
+        }
+
+        if (!$value instanceof FileInterface) {
+            throw new FinisherException(
+                sprintf(
+                    'The value of the upload element "%s" must be null, a FileReference, a FileInterface or a list of those, "%s" given.',
+                    $elementIdentifier,
+                    get_debug_type($value)
+                ),
+                1759046400
+            );
+        }
+
+        $mail->attach($value->getContents(), $value->getName(), $value->getMimeType());
     }
 
     /**

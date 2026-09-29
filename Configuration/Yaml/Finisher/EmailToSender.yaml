@@ -31,7 +31,6 @@ TYPO3:
                     label: 'Attachments'
                     config:
                       type: 'group'
-                      internal_type: 'db'
                       allowed: 'sys_file'
                       size: 5
                       minitems: 0

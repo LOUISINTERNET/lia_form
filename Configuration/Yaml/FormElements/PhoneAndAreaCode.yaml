@@ -15,7 +15,6 @@ TYPO3:
                 group: html5
                 groupSorting: 610
                 iconIdentifier: "form-telephone"
-                editor:
                 editors:
                   100:
                     identifier: header

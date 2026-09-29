@@ -13,6 +13,10 @@ Here is a list of all provided form elements.
     :class: pb-4
     :card-height: 100
 
+    ..  card:: :ref:`AttachableUploadElementInterface <attachableUploadElement>`
+
+        Let your own upload element be attached to finisher mails.
+
     ..  card:: :ref:`DataProtection <DataProtection>`
 
         DataProtection field documentation.
@@ -42,6 +46,7 @@ Here is a list of all provided form elements.
     :titlesonly:
     :hidden:
 
+    ./AttachableUploadElement
     ./DataProtection
     ./HtmlCode
     ./LiaDatePicker
